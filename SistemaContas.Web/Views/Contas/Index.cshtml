@@ -6,11 +6,10 @@
 <link href="~/Content/Index.css" rel="stylesheet" />
 
 <style>
-    .graficos {max-width:600px; max-height:500px;
-    }
+    
 </style>
 
-<h2>Balanço</h2>
+<h2>Balanço (R$)</h2>
 
 <div id="grafico">
     <canvas id="graficos" class="graficos" ></canvas>
@@ -19,19 +18,16 @@
 @section Scripts{
     <script src="~/Scripts/Chart.js"></script>
     <script>
-        var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
 
         var barChartData = {
             labels: ["Entrada", "Saída"],
-            datasets: [
-                {
-                    fillColor: "rgba(220,220,220,0.5)",
-                    strokeColor: "rgba(220,220,220,0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
-                    data: [300,200]
-                }
-            ]
+            datasets: [{
+                fillColor : "rgba(151,187,205,0.5)",
+                strokeColor : "rgba(151,187,205,0.8)",
+                highlightFill : "rgba(151,187,205,0.75)",
+                highlightStroke : "rgba(151,187,205,1)",
+                    data: @Html.Raw(ViewBag.Dados)
+                    }]
 
         }
         window.onload = function () {

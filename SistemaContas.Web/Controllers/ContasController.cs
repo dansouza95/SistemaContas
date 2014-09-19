@@ -29,7 +29,7 @@ namespace SistemaContas.Web.Controllers
 
             var Creditos = repositoryConta.Creditos(Convert.ToInt32(User.Identity.Name));
             var Debitos = repositoryConta.Debitos(Convert.ToInt32(User.Identity.Name));
-            double[] dados = new double[2] {Debitos, Creditos };
+            double[] dados = new double[2] {Creditos, Debitos };
             ViewBag.Dados = new JavaScriptSerializer().Serialize(dados);
             return View();
         }
@@ -45,7 +45,7 @@ namespace SistemaContas.Web.Controllers
             conta.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
             conta.StatusConta = "Em aberto";
             repositoryConta.CadastraConta(conta);
-            return RedirectToAction("Index");
+            return RedirectToAction("SemTratativa", "Pendencias");
         }
 
         [Authorize(Roles="Usuario, Administrador")]
@@ -68,7 +68,7 @@ namespace SistemaContas.Web.Controllers
             conta.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
             conta.StatusConta = "Em aberto";
             repositoryConta.EditarConta(conta);
-            return RedirectToAction("Index");
+            return RedirectToAction("SemTratativa", "Pendencias");
         }
 
         [Authorize(Roles = "Usuario, Administrador")]

@@ -65,23 +65,5 @@ namespace CadastroContas.Core.Dominio.Dados.Repositorio
                 }
             }
         }
-
-
-        public Cliente RecuperarAcesso(string email)
-        {
-            using (ISession session = NHibernateConnection.OpenSession())
-            {
-                var cliente = session.Query<Cliente>().Where(x => x.Email == email);
-                if (cliente.Count() > 0)
-                {
-                    var user = cliente.Single();
-                    return user;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
     }
 }

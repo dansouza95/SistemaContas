@@ -69,7 +69,7 @@ namespace SistemaContas.Web.Controllers
             conta.StatusConta = "Em andamento";
             repositoryConta.AtualizarConta(conta);
             repositoryPagamento.SalvarMovimentacao(pagamento);
-            return RedirectToAction("Index", "Contas");
+            return RedirectToAction("EmAndamento", "Pendencias");
         }
 
         [Authorize(Roles = "Usuario, Administrador")]
@@ -121,7 +121,7 @@ namespace SistemaContas.Web.Controllers
                 repositoryTransacao.SalvarTransacao(t);
                 repositoryPagamento.SalvarOuAtualizarMovimentacao(pagamento);
 
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("EmAndamento", "Pendencias");
 
             }
             else
@@ -180,7 +180,7 @@ namespace SistemaContas.Web.Controllers
                 repositoryTransacao.SalvarTransacao(t);
                 repositoryPagamento.SalvarOuAtualizarMovimentacao(pagamento);
 
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("EmAndamento", "Pendencias");
 
             }
             else
