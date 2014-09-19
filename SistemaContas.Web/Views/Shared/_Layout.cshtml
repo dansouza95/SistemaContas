@@ -26,21 +26,21 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="Contas">Contas <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contas <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes" role="menu">
                             <li><a href="~/Contas/CadastrarConta">Cadastro</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="Contas">Pendências<span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pendências<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes" role="menu">
                             <li><a href="~/Pendencias/SemTratativa">Em aberto</a></li>
                             <li><a href="~/Pendencias/EmAndamento">Em andamento</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="Contas">Relatórios <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
+                        <ul class="dropdown-menu" aria-labelledby="themes" role="menu">
                             <li><a href="~/Relatorios/ContasFinalizadas">Lista de contas finalizadas</a></li>
                             <li><a href="~/Relatorios/Extrato">Extrato</a></li>
                         </ul>
@@ -48,13 +48,19 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="Contas">Perfil <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
-                            <li><a href="~/Perfil/Detalhes">Detalhes</a></li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfil <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes" role="menu">
                             <li><a href="~/Perfil/AlterarSenha">Alterar Senha</a></li>
                         </ul>
                     </li>
-                    <li><a href="~/Acesso/Logout">Sair</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes" role="menu">
+                            <li><a href="~/Acesso/Logout">Sair</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </div>
             
