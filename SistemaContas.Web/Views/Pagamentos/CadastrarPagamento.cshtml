@@ -1,0 +1,43 @@
+﻿@model Movimentacao
+@{
+    ViewBag.Title = "Novo Pagamento";
+}
+
+<h2>Novo</h2>
+
+@using (Html.BeginForm("CadastrarPagamento", "Pagamentos", FormMethod.Post, new { @id = "frm_cadastroPagamentos" }))
+{
+    @Html.AntiForgeryToken()
+    
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumeroParcelas, "Número de parcelas: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas,"Selecionar", new {@id="dropDownParcelas", @class="col-md-10 form-control", @required="true"})
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Iniciar pagamento" class="btn btn-default" id="btn_gravarPagamento" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $('#btn_gravarPagamento').click(function () {
+            if ($('#dropDownParcelas').val() == "Selecionar") {
+                alert('Selecione o número de parcelas!');
+            }
+            else {
+                $('#frm_cadastroPagamentos').submit();
+            }
+        });
+    </script>
+}

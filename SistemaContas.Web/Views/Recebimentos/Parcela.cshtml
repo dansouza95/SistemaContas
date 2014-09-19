@@ -1,0 +1,45 @@
+﻿@model Movimentacao
+@{
+    ViewBag.Title = "Atualização recebimento";
+}
+
+<h2>Novo</h2>
+
+@using (Html.BeginForm("Parcela", "Recebimentos", FormMethod.Post, new { @id = "frm_pagamentoParcela" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <h2><strong>Confirma o recebimento da parcela abaixo?</strong></h2>
+            <table>
+                <tr>
+                    <td><strong>Descrição da conta:</strong> </td>
+                    <td>@Model.Conta.Descricao</td>
+                </tr>
+                <tr>
+                    <td><strong>Número de parcelas:</strong> </td>
+                    <td>@Model.NumeroParcelas</td>
+                </tr>
+                <tr>
+                    <td><strong>Parcelas restantes:</strong> </td>
+                    <td>@Model.ParcelasRestantes</td>
+                </tr>
+                <tr>
+                    <td><strong>Valor da parcela:</strong> </td>
+                    <td>@Model.ValorParcela.ToString("R$ 0.00")</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Confirmar" class="btn btn-default" id="btn_gravarParcela" />
+            </div>
+        </div>
+    </div>
+}

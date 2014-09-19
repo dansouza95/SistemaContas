@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Conta>
+@{
+    ViewBag.Title = "Contas em andamento";
+}
+
+<style>
+    .form-horizontal {
+        height: 600px;
+    }
+</style>
+
+<h2>Contas em andamento</h2>
+<div class="form-horizontal">
+
+    <table class="table">
+        <tr>
+            <th>
+                Credor/Devedor
+            </th>
+            <th>
+                Descricao
+            </th>
+            <th>
+                Valor
+            </th>
+            <th>
+                Data de vencimento
+            </th>
+            <th>Tipo de Operação</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (ViewBag.Lista != null)
+        {
+            foreach (var item in ViewBag.Lista)
+            {
+                <tr>
+                    <td>
+                        @item.CredorOuDevedor
+                    </td>
+                    <td>
+                        @item.Descricao
+                    </td>
+                    <td>
+                        @item.ValorConta.ToString("R$ 0.00")
+                    </td>
+                    <td>
+                        @item.DataVencimento.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.TipoOperacao
+                    </td>
+                    <td>
+                        @if (item.TipoOperacao == "Crédito")
+                        {
+                            @Html.ActionLink("Incluir recebimento", "Parcela", new { @controller = "Recebimentos", @id = @item.Id })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Incluir pagamento", "Parcela", new { @controller = "Pagamentos", @id = @item.Id })
+                        }
+                    </td>
+                    <td>
+                        @if (item.TipoOperacao == "Crédito")
+                        {
+                            @Html.ActionLink("Quitar recebimento", "QuitarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Quitar pagamento", "QuitarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    @Html.ActionLink("Voltar ao início", "Index", new{@controller="Contas"})
+</div>

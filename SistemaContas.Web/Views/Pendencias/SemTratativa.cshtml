@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Conta>
+@{
+    ViewBag.Title = "Contas sem tratativa";
+}
+
+<style>
+    .form-horizontal {
+        height: 600px;
+    }
+</style>
+
+<h2>Contas pendentes</h2>
+<div class="form-horizontal">
+
+    <table class="table">
+        <tr>
+            <th>
+                Credor ou devedor
+            </th>
+            <th>
+                Descricao
+            </th>
+            <th>
+                Valor
+            </th>
+            <th>
+                Data de vencimento
+            </th>
+            <th>Tipo de Operação</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.CredorOuDevedor
+                    </td>
+                    <td>
+                        @item.Descricao
+                    </td>
+                    <td>
+                        @item.ValorConta.ToString("R$ 0.00")
+                    </td>
+                    <td>
+                        @item.DataVencimento.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.TipoOperacao
+                    </td>
+                    <td>
+                        @if (item.TipoOperacao == "Crédito")
+                        {
+                            @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new{@controller="Recebimentos", @id= @item.Id})
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller="Pagamentos", @id = @item.Id })
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditarConta", new { @id = @item.Id, @controller="Contas"})
+                    </td>
+                    <td>
+                        @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    @Html.ActionLink("Voltar ao início", "Index", new { @controller="Contas"})
+</div>

@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "Contas Finalizadas";
+    if (ViewBag.Pdf!=null)
+    {
+        Layout = null;
+    }
+}
+
+
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <style>
+            .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:80%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:33%;}td{width:33%;}h2{margin-top:100px !important;margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}</style>
+    
+<h3>Contas finalizadas</h3>
+
+@using (Html.BeginForm("ContasFinalizadasPDF", "Relatorios", FormMethod.Post, new { @id = "frm_extrato", @class = "form-horizontal" }))
+{
+
+    <div class="div-extratos">
+        <h4>Débitos</h4>
+        <div class="panel panel-default">
+            <table class="table">
+                <tr>
+                    <th>
+                        Credor
+                    </th>
+                    <th>
+                        Descrição
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                </tr>
+                @if (ViewBag.Contas != null)
+                {
+                    foreach (var item in ViewBag.Contas)
+                    {
+                        if (item.TipoOperacao == "Débito")
+                        {
+                            <tr>
+                                <td>
+                                    @item.CredorOuDevedor
+                                </td>
+                                <td>
+                                    @item.Descricao
+                                </td>
+                                <td>
+                                    @item.ValorConta.ToString("R$ 0.00")
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+    <div class="div-extratos">
+
+        <h4>Créditos</h4>
+        <div class="panel panel-default">
+            <table class="table">
+                <tr>
+                    <th>
+                        Devedor
+                    </th>
+                    <th>
+                        Descrição
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                </tr>
+                @if (ViewBag.Contas != null)
+                {
+                    foreach (var item in ViewBag.Contas)
+                    {
+                        if (item.TipoOperacao == "Crédito")
+                        {
+                            <tr>
+                                <td>
+                                    @item.CredorOuDevedor
+                                </td>
+                                <td>
+                                    @item.Descricao
+                                </td>
+                                <td>
+                                    @item.ValorConta.ToString("R$ 0.00")
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+    <div class="total-extrato">
+        <div class="panel panel-default">
+            <table class="table">
+                <tr>
+                    <td>
+                        <strong>SUBTOTAL CRÉDITO:</strong>
+                    </td>
+                    <td></td>
+                    <td>
+                        @ViewBag.Creditos.ToString("R$ 0.00")
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="total-extrato">
+        <div class="panel panel-default">
+            <table class="table">
+                <tr>
+                    <td>
+                        <strong>SUBTOTAL DÉBITO:</strong>
+                    </td>
+                    <td></td>
+                    <td>
+                        @ViewBag.Debitos.ToString("R$ 0.00")
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="total-extrato">
+        <div class="panel panel-default">
+            <table class="table">
+                <tr>
+                    <td>
+                        <strong>TOTAL:</strong>
+                    </td>
+                    <td></td>
+                    <td>
+                        @ViewBag.Total.ToString("R$ 0.00")
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    if (ViewBag.Pdf == null)
+    {
+        <button type="submit" id="btn_gerarExtrato" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Exportar para arquivo PDF">
+            <span class="glyphicon glyphicon-export"></span>
+        </button>
+    }
+
+
+   <div class="form-group">
+        @if (ViewBag.Pdf == null) {
+            @Html.ActionLink("Voltar ao Início", "Index", "Contas")
+        }   
+    </div>
+}
+@section Scripts{
+    <script>
+        $('#btn_gerarExtrato').click(function () {
+            $('#frm_extrato').submit();
+        });
+        $(document).ready(function () {
+            $('.tool').tooltip();
+        });
+    </script>
+}
+
+    @if (ViewBag.Pdf != null)
+    {
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    }

@@ -1,0 +1,70 @@
+﻿@using SistemaContas.Core
+@model Cliente
+@{
+    ViewBag.Title = "RegistroUsuario";
+}
+
+<h2>Cadastro</h2>
+
+<style>
+    table {
+        width: 40% !important;
+    }
+
+    .col-md-2 {
+        width: 90% !important;
+    }
+</style>
+
+@using (Html.BeginForm("RegistroUsuario", "Acesso", FormMethod.Post, new { id = "frm_registro" }))
+{
+    <div class="form-group">
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Nome, "Nome:", new { @class = "col-md-2 control-label" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Nome, new { @class = "col-md-10 form-control", id = "txtNome", @required = "true", @maxlength = "40", @autofocus = "true" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Email, "E-mail:", new { @class = "col-md-2 control-label" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "col-md-10 form-control", id = "txtEmail", @required = "true", @type = "email", @autofocus = "true" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Usuario, "Usuário", new { @class="col-md-2 control-label"})
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Usuario, new { @class = "col-md-10 form-control", id = "txtUsuario", @required = "true", @maxlength = "30", @autofocus = "true" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Senha, "Senha:", new { @class = "col-md-2 control-label" })
+                </td>
+                <td>
+                    @Html.PasswordFor(x => x.Senha, new { @class = "col-md-10 form-control", id = "txtSenha", @required = "true", @maxlength = "20", @autofocus = "true" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Confirmar" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Confirmar"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.tool').tooltip();
+        });
+    </script>
+}

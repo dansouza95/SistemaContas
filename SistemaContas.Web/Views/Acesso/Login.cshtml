@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+@model Cliente
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+
+    <title>Login</title>
+    <link href="~/Content/Login.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+
+        @using (Html.BeginForm("Login", "Acesso", FormMethod.Post, new { @class = "form-signin", @id = "frm_login" })) 
+        { 
+            <h2 class="form-signin-heading">Por favor, autentique-se.</h2>
+            @Html.TextBoxFor(x => x.Usuario, new { @class = "col-md-10 form-control", id = "txtUsuario", @placeholder = "Digite o usuário", @required = "true", @autofocus = "true", @maxlength = "30" })
+            @Html.PasswordFor(x => x.Senha, new { @class = "col-md-10 form-control", id = "txtSenha", @placeholder = "Digite a Senha", @required = "true", @autofocus = "true", @maxlength = "20" })
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            @Html.ActionLink("Não possuo cadastro", "RegistroUsuario")
+        }
+    </div>
+</body>
+</html>

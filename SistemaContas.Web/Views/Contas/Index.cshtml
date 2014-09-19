@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+}
+
+<link href="~/Content/Index.css" rel="stylesheet" />
+
+<style>
+    .graficos {max-width:600px; max-height:500px;
+    }
+</style>
+
+<h2>Balanço</h2>
+
+<div id="grafico">
+    <canvas id="graficos" class="graficos" ></canvas>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Chart.js"></script>
+    <script>
+        var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+
+        var barChartData = {
+            labels: ["Entrada", "Saída"],
+            datasets: [
+                {
+                    fillColor: "rgba(220,220,220,0.5)",
+                    strokeColor: "rgba(220,220,220,0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: [300,200]
+                }
+            ]
+
+        }
+        window.onload = function () {
+            var ctx = document.getElementById("graficos").getContext("2d");
+            window.myBar = new Chart(ctx).Bar(barChartData, {
+                responsive: true
+            });
+        }
+
+</script>
+}
