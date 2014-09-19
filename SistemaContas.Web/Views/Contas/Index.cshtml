@@ -6,13 +6,18 @@
 <link href="~/Content/Index.css" rel="stylesheet" />
 
 <style>
-    
+    .div_graficos{
+        margin-top:30px;
+        max-height:450px;
+        max-width:600px;
+        margin-bottom:100px;
+    }
 </style>
 
 <h2>Balanço (R$)</h2>
 
-<div id="grafico">
-    <canvas id="graficos" class="graficos" ></canvas>
+<div id="graph_container" class="div_graficos">
+    <canvas id="graficos" ></canvas>
 </div>
 
 @section Scripts{
@@ -26,16 +31,23 @@
                 strokeColor : "rgba(151,187,205,0.8)",
                 highlightFill : "rgba(151,187,205,0.75)",
                 highlightStroke : "rgba(151,187,205,1)",
-                    data: @Html.Raw(ViewBag.Dados)
-                    }]
+                data: @Html.Raw(ViewBag.Dados)
+            }]
 
         }
-        window.onload = function () {
-            var ctx = document.getElementById("graficos").getContext("2d");
-            window.myBar = new Chart(ctx).Bar(barChartData, {
-                responsive: true
-            });
-        }
+        var opts = {
+            scaleShowValues: true, 
+            scaleValuePaddingX: 13,
+            scaleValuePaddingY: 13,
+            responsive: true
+        };
+        $(document).ready(function(){
+            
+                var ctx = document.getElementById("graficos").getContext("2d");
+                $(document).myBar = new Chart(ctx).Bar(barChartData, opts);
+                barChartData.update();
+        });
 
+      
 </script>
 }

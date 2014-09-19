@@ -5,8 +5,7 @@
     }
 }
 
-    @if (ViewBag.Pdf != null) 
-    { 
+    
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <style>
@@ -14,11 +13,6 @@
         .table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}
         button{width:100px !important;}
         </style>
-    }
-    else
-    {
-        <style>th{width:25% !important;}td{width:25% !important;}.form-horizontal{margin-top:50px;width:85%;margin-bottom:100px;}</style>
-    }
     <h2>Extrato</h2>
 
     @using (Html.BeginForm("ExtratoPDF", "Relatorios", FormMethod.Post, new { @id = "frm_extrato", @class = "form-horizontal" }))
