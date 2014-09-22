@@ -12,5 +12,6 @@ namespace CadastroContas.Core.Dominio.Dados.Contrato
         void CadastraCliente(Cliente cliente);
         int LoginCliente(Cliente cliente);
         Cliente PegarClientePorId(int id);
+        void EditarPerfil(Cliente cliente);
     }
 }

@@ -10,7 +10,7 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <style>
-            .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:80%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:33%;}td{width:33%;}h2{margin-top:100px !important;margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}</style>
+            .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:80%;margin-bottom:50px;}.total-extrato{width:100%;}th{width:33%;}td{width:33%;}h2{margin-top:100px !important;margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}.total{width:66%}.total-valor{width:33%}button{width:100px !important;}</style>
     
 <h3>Contas finalizadas</h3>
 
@@ -20,38 +20,42 @@
     <div class="div-extratos">
         <h4>Débitos</h4>
         <div class="panel panel-default">
-            <table class="table">
-                <tr>
-                    <th>
-                        Credor
-                    </th>
-                    <th>
-                        Descrição
-                    </th>
-                    <th>
-                        Valor
-                    </th>
-                </tr>
-                @if (ViewBag.Contas != null)
-                {
-                    foreach (var item in ViewBag.Contas)
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Credor
+                        </th>
+                        <th>
+                            Descrição
+                        </th>
+                        <th>
+                            Valor
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Contas != null)
                     {
-                        if (item.TipoOperacao == "Débito")
+                        foreach (var item in ViewBag.Contas)
                         {
-                            <tr>
-                                <td>
-                                    @item.CredorOuDevedor
-                                </td>
-                                <td>
-                                    @item.Descricao
-                                </td>
-                                <td>
-                                    @item.ValorConta.ToString("R$ 0.00")
-                                </td>
-                            </tr>
+                            if (item.TipoOperacao == "Débito")
+                            {
+                                <tr>
+                                    <td>
+                                        @item.CredorOuDevedor
+                                    </td>
+                                    <td>
+                                        @item.Descricao
+                                    </td>
+                                    <td>
+                                        @item.ValorConta.ToString("R$ 0.00")
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
-                }
+                </tbody>
             </table>
         </div>
     </div>
@@ -60,82 +64,87 @@
 
         <h4>Créditos</h4>
         <div class="panel panel-default">
-            <table class="table">
-                <tr>
-                    <th>
-                        Devedor
-                    </th>
-                    <th>
-                        Descrição
-                    </th>
-                    <th>
-                        Valor
-                    </th>
-                </tr>
-                @if (ViewBag.Contas != null)
-                {
-                    foreach (var item in ViewBag.Contas)
+            <table class="table table-bordered table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Devedor
+                        </th>
+                        <th>
+                            Descrição
+                        </th>
+                        <th>
+                            Valor
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Contas != null)
                     {
-                        if (item.TipoOperacao == "Crédito")
+                        foreach (var item in ViewBag.Contas)
                         {
-                            <tr>
-                                <td>
-                                    @item.CredorOuDevedor
-                                </td>
-                                <td>
-                                    @item.Descricao
-                                </td>
-                                <td>
-                                    @item.ValorConta.ToString("R$ 0.00")
-                                </td>
-                            </tr>
+                            if (item.TipoOperacao == "Crédito")
+                            {
+                                <tr>
+                                    <td>
+                                        @item.CredorOuDevedor
+                                    </td>
+                                    <td>
+                                        @item.Descricao
+                                    </td>
+                                    <td>
+                                        @item.ValorConta.ToString("R$ 0.00")
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
-                }
+                </tbody>
             </table>
         </div>
     </div>
     <div class="total-extrato">
         <div class="panel panel-default">
-            <table class="table">
-                <tr>
-                    <td>
-                        <strong>SUBTOTAL CRÉDITO:</strong>
-                    </td>
-                    <td></td>
-                    <td>
-                        @ViewBag.Creditos.ToString("R$ 0.00")
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="total-extrato">
-        <div class="panel panel-default">
-            <table class="table">
-                <tr>
-                    <td>
-                        <strong>SUBTOTAL DÉBITO:</strong>
-                    </td>
-                    <td></td>
-                    <td>
-                        @ViewBag.Debitos.ToString("R$ 0.00")
-                    </td>
-                </tr>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="total">
+                            <strong>SUBTOTAL CONTAS DE CRÉDITO:</strong>
+                        </td>
+                        <td class="total-valor">
+                            @ViewBag.Creditos.ToString("R$ 0.00")
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
 
     <div class="total-extrato">
         <div class="panel panel-default">
-            <table class="table">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="total">
+                            <strong>SUBTOTAL CONTAS DE DÉBITO:</strong>
+                        </td>
+                        <td class="total-valor">
+                            @ViewBag.Debitos.ToString("R$ 0.00")
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="total-extrato">
+        <div class="panel panel-default">
+            <table class="table table-bordered">
                 <tr>
-                    <td>
+                    <td class="total">
                         <strong>TOTAL:</strong>
                     </td>
-                    <td></td>
-                    <td>
+                    <td class="total-valor">
                         @ViewBag.Total.ToString("R$ 0.00")
                     </td>
                 </tr>
@@ -144,9 +153,12 @@
     </div>
     if (ViewBag.Pdf == null)
     {
-        <button type="submit" id="btn_gerarExtrato" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Gerar documento PDF">
-            <span class="glyphicon glyphicon-export"></span>
-        </button>
+        <div class="form-group">
+            <button type="submit" id="btn_gerarExtrato" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Gerar documento PDF">
+                <span class=" glyphicon glyphicon-export">
+                </span>
+            </button>
+        </div>
     }
 
 

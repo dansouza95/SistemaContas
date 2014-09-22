@@ -9,9 +9,7 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <style>
-        .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:100%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:25% !important;}td{width:25% !important;}h2{margin-top:100px !    important;margin-left:20%;}button{margin-top:50px;}
-        .table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}
-        button{width:100px !important;}
+        .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:100%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:25% !important;}td{width:25%}h2{margin-top:100px !    important;margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}button{width:100px !important;}.total{width:75% !important;}.total-valor{width:25% !important;}
         </style>
     <h2>Extrato</h2>
 
@@ -20,46 +18,50 @@
         <div class="div-extratos">
             <h4>Créditos</h4>
             <div class="panel panel-default">
-                <table class="table">
-                    <tr>
-                        <th>
-                            Devedor
-                        </th>
-                        <th>
-                            Descrição
-                        </th>
-                        <th>
-                            Data
-                        </th>
-                        <th>
-                            Valor
-                        </th>
-                        
-                    </tr>
-                    @if (ViewBag.Historico != null)
-                    {
-                        foreach (var item in ViewBag.Historico)
-                        {
-                            if (item.TipoTransacao == "Crédito")
-                            {
-                                <tr>
-                                    <td>
-                                        @item.Conta.CredorOuDevedor
-                                    </td>
-                                    <td>
-                                        @item.Conta.Descricao
-                                    </td>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Devedor
+                            </th>
+                            <th>
+                                Descrição
+                            </th>
+                            <th>
+                                Data
+                            </th>
+                            <th>
+                                Valor
+                            </th>
 
-                                    <td>
-                                        @item.DataTransacao.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        @item.ValorTransacao.ToString("R$ 0.00")
-                                    </td>
-                                </tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Historico != null)
+                        {
+                            foreach (var item in ViewBag.Historico)
+                            {
+                                if (item.TipoTransacao == "Crédito")
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Conta.CredorOuDevedor
+                                        </td>
+                                        <td>
+                                            @item.Conta.Descricao
+                                        </td>
+
+                                        <td>
+                                            @item.DataTransacao.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @item.ValorTransacao.ToString("R$ 0.00")
+                                        </td>
+                                    </tr>
+                                }
                             }
                         }
-                    }
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -68,96 +70,100 @@
         <div class="div-extratos">
             <h4>Débitos</h4>
             <div class="panel panel-default">
-                <table class="table">
-                    <tr>
-                        <th>
-                            Credor
-                        </th>
-                        <th>
-                            Descrição
-                        </th>
-                        <th>
-                            Data
-                        </th>
-                        <th>
-                            Valor
-                        </th>
-                    </tr>
-                    @if (ViewBag.Historico != null)
-                    {
-                        foreach (var item in ViewBag.Historico)
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Credor
+                            </th>
+                            <th>
+                                Descrição
+                            </th>
+                            <th>
+                                Data
+                            </th>
+                            <th>
+                                Valor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Historico != null)
                         {
-                            if (item.TipoTransacao == "Débito")
+                            foreach (var item in ViewBag.Historico)
                             {
-                                <tr>
-                                    <td>
-                                        @item.Conta.CredorOuDevedor
-                                    </td>
-                                    <td>
-                                        @item.Conta.Descricao
-                                    </td>
+                                if (item.TipoTransacao == "Débito")
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Conta.CredorOuDevedor
+                                        </td>
+                                        <td>
+                                            @item.Conta.Descricao
+                                        </td>
 
-                                    <td>
-                                        @item.DataTransacao.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        @item.ValorTransacao.ToString("R$ 0.00")
-                                    </td>
-                                </tr>
+                                        <td>
+                                            @item.DataTransacao.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @item.ValorTransacao.ToString("R$ 0.00")
+                                        </td>
+                                    </tr>
+                                }
                             }
                         }
-                    }
+                    </tbody>
                 </table>
             </div>
         </div>
 
         <div class="total-extrato">
             <div class="panel panel-default">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <strong>SUBTOTAL CRÉDITO:</strong>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            @ViewBag.OperacoesCredito.ToString("R$ 0.00")
-                        </td>
-                    </tr>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="total">
+                                <strong>SUBTOTAL CRÉDITO:</strong>
+                            </td>
+                            <td class="total-valor">
+                                @ViewBag.OperacoesCredito.ToString("R$ 0.00")
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
 
         <div class="total-extrato">
             <div class="panel panel-default">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <strong>SUBTOTAL DÉBITO:</strong>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            @ViewBag.OperacoesDebito.ToString("R$ 0.00")
-                        </td>
-                    </tr>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="total">
+                                <strong>SUBTOTAL DÉBITO:</strong>
+                            </td>
+                            <td class="total-valor">
+                                @ViewBag.OperacoesDebito.ToString("R$ 0.00")
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
 
         <div class="total-extrato">
             <div class="panel panel-default">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <strong>TOTAL:</strong>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            @ViewBag.Total.ToString("R$ 0.00")
-                        </td>
-                    </tr>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="total">
+                                <strong>TOTAL:</strong>
+                            </td>
+                            <td class="total-valor">
+                                @ViewBag.Total.ToString("R$ 0.00")
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

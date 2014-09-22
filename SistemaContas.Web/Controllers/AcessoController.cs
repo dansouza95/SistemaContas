@@ -11,6 +11,8 @@ using System.Web.Security;
 
 namespace SistemaContas.Web.Controllers
 {
+    [Authorize]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class AcessoController : Controller
     {
         // GET: Acesso
@@ -101,6 +103,5 @@ namespace SistemaContas.Web.Controllers
             return RedirectToAction("Login");
         }
 
-        
     }
 }
