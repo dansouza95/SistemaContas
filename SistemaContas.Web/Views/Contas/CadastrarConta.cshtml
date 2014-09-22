@@ -49,9 +49,9 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.DataVencimento, "Data: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DataVencimento, "Data de vencimento: ", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.DataVencimento, htmlAttributes: new { @class = "col-md-10 form-control datepicker", @id = "txtDataVencimento", @maxlength = "10", @required = "required", @autofocus = "true" })
+                    @Html.TextBoxFor(model => model.DataVencimento, htmlAttributes: new { @class = "col-md-10 form-control datepicker", @id = "txtDataVencimento", @maxlength = "10", @required = "required", @autofocus = "true"})
                     <span id="verificadorData" class="control-label col-md-2"></span>
 
                 </div>
