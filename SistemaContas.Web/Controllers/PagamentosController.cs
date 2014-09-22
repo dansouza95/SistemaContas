@@ -58,7 +58,15 @@ namespace SistemaContas.Web.Controllers
         {
             var conta = repositoryConta.PegarContaPorId(id);
             pagamento.Conta = conta;
-            pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+            if (Session["UsuarioLogado"] != null)
+            {
+                pagamento.Cliente = Session["UsuarioLogado"] as Cliente;
+            }
+            else
+            {
+                Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
+                pagamento.Cliente = Session["UsuarioLogado"] as Cliente;
+            }
             pagamento.Valor = pagamento.Conta.ValorConta;
             pagamento.ValorParcela = pagamento.Valor / pagamento.NumeroParcelas;
             pagamento.ParcelasRestantes = pagamento.NumeroParcelas;
@@ -80,7 +88,7 @@ namespace SistemaContas.Web.Controllers
                 if (id != 0 && conta != null)
                 {
                     var pagamento = repositoryPagamento.PegarMovimentacao(id);
-                    pagamento.Conta = repositoryConta.PegarContaPorId(id);
+                    pagamento.Conta = conta;
                     return View(pagamento);
                 }
                 else
@@ -98,7 +106,15 @@ namespace SistemaContas.Web.Controllers
                 pagamento = repositoryPagamento.PegarMovimentacao(id);
 
                 pagamento.Conta = conta;
-                pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+                if (Session["UsuarioLogado"] != null)
+                {
+                    pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+                }
+                else
+                {
+                    Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
+                    pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+                }
                 pagamento.ValorRestante = pagamento.ValorRestante - pagamento.ValorParcela;
                 pagamento.ParcelasRestantes -= 1;
                 pagamento.Status = "Em andamento";
@@ -106,7 +122,7 @@ namespace SistemaContas.Web.Controllers
                 {
                     pagamento.Status = "Finalizada";
                     conta.StatusConta = "Finalizada";
-                    conta.DataFinalizacao = DateTime.Now;
+                    conta.UltimaAtualizacao = DateTime.Now;
                     repositoryConta.AtualizarConta(conta);
                 }
                 pagamento.UltimaAtualizacao = DateTime.Now;
@@ -157,7 +173,15 @@ namespace SistemaContas.Web.Controllers
                 pagamento = repositoryPagamento.PegarMovimentacao(id);
 
                 pagamento.Conta = conta;
-                pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+                if (Session["UsuarioLogado"] != null)
+                {
+                    pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+                }
+                else
+                {
+                    Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
+                    pagamento.Cliente = (Cliente)Session["UsuarioLogado"];
+                }
                 var valor = pagamento.ValorRestante;
                 pagamento.ValorRestante = 0;
                 pagamento.ParcelasRestantes = 0;
@@ -166,7 +190,7 @@ namespace SistemaContas.Web.Controllers
                 {
                     pagamento.Status = "Finalizada";
                     conta.StatusConta = "Finalizada";
-                    conta.DataFinalizacao = DateTime.Now;
+                    conta.UltimaAtualizacao = DateTime.Now;
                     repositoryConta.AtualizarConta(conta);
                 }
                 pagamento.UltimaAtualizacao = DateTime.Now;

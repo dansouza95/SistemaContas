@@ -82,7 +82,7 @@ namespace CadastroContas.Core.Dominio.Dados.Repositorio
         {
             using (ISession session = NHibernateConnection.OpenSession())
             {
-                var lista = session.Query<Conta>().Where(x => x.Cliente.Id == id && x.StatusConta != "Finalizada").OrderBy(x => x.TipoOperacao).ToList();
+                var lista = session.Query<Conta>().Where(x => x.Cliente.Id == id && x.StatusConta != "Finalizada").OrderBy(x => x.DataVencimento).ToList();
                 return lista;
             }
         }

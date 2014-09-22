@@ -37,6 +37,49 @@
             {
                 foreach (var item in ViewBag.Lista)
                 {
+                    if (item.DataVencimento < DateTime.Now)
+                    {
+                        <tr class="danger">
+                            <td>
+                                @item.CredorOuDevedor
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @item.ValorConta.ToString("R$ 0.00")
+                            </td>
+                            <td>
+                                @item.DataVencimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.TipoOperacao
+                            </td>
+                            <td>
+                                @if (item.TipoOperacao == "Crédito")
+                                {
+                                    @Html.ActionLink("Incluir recebimento", "Parcela", new { @controller = "Recebimentos", @id = @item.Id })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Incluir pagamento", "Parcela", new { @controller = "Pagamentos", @id = @item.Id })
+                                }
+                            </td>
+                            <td>
+                                @if (item.TipoOperacao == "Crédito")
+                                {
+                                    @Html.ActionLink("Quitar recebimento", "QuitarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Quitar pagamento", "QuitarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                    else
+                    {
                     <tr>
                         <td>
                             @item.CredorOuDevedor
@@ -74,6 +117,7 @@
                             }
                         </td>
                     </tr>
+                    }
                 }
             }
         </tbody>

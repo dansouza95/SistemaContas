@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <th>
-                    Credor ou devedor
+                    Credor/devedor
                 </th>
                 <th>
                     Descricao
@@ -37,7 +37,7 @@
                 <th>
                     Exclusão
                 </th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -45,42 +45,83 @@
             {
                 foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @item.CredorOuDevedor
-                        </td>
-                        <td>
-                            @item.Descricao
-                        </td>
-                        <td>
-                            @item.ValorConta.ToString("R$ 0.00")
-                        </td>
-                        <td>
-                            @item.DataVencimento.ToString("dd/MM/yyyy")
-                        </td>
-                        <td>
-                            @item.TipoOperacao
-                        </td>
-                        <td>
-                            @if (item.TipoOperacao == "Crédito")
-                            {
-                                @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
-                            }
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "EditarConta", new { @id = @item.Id, @controller = "Contas" })
-                        </td>
-                        <td>
-                            @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
-                        </td>
-                    </tr>
+                    if (item.DataVencimento < DateTime.Now)
+                    {
+                        <tr class="danger">
+                            <td>
+                                @item.CredorOuDevedor
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @item.ValorConta.ToString("R$ 0.00")
+                            </td>
+                            <td>
+                                @item.DataVencimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.TipoOperacao
+                            </td>
+                            <td>
+                                @if (item.TipoOperacao == "Crédito")
+                                {
+                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "EditarConta", new { @id = @item.Id, @controller = "Contas" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>
+                                @item.CredorOuDevedor
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @item.ValorConta.ToString("R$ 0.00")
+                            </td>
+                            <td>
+                                @item.DataVencimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.TipoOperacao
+                            </td>
+                            <td>
+                                @if (item.TipoOperacao == "Crédito")
+                                {
+                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "EditarConta", new { @id = @item.Id, @controller = "Contas" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
+                            </td>
+                        </tr>
+                    }
+
+
                 }
             }
         </tbody>
     </table>
-    @Html.ActionLink("Voltar ao início", "Index", new { @controller="Contas"})
+    @Html.ActionLink("Voltar ao início", "Index", new { @controller = "Contas" })
 </div>

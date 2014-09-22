@@ -9,7 +9,7 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <style>
-        .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:100%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:25% !important;}td{width:25%}h2{margin-top:100px !    important;margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}button{width:100px !important;}.total{width:75% !important;}.total-valor{width:25% !important;}
+        .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:50px;width:80%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:25% !important;}td{width:25%}h2{margin-top:100px !    important;margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:65px;margin-top:65px;}h4{font-size:20px;}button{width:100px !important;}.total{width:75% !important;}.total-valor{width:25% !important;}
         </style>
     <h2>Extrato</h2>
 
@@ -155,6 +155,7 @@
             <div class="panel panel-default">
                 <table class="table table-bordered">
                     <tbody>
+                        @if (ViewBag.Total >= 0) { 
                         <tr>
                             <td class="total">
                                 <strong>TOTAL:</strong>
@@ -163,6 +164,18 @@
                                 @ViewBag.Total.ToString("R$ 0.00")
                             </td>
                         </tr>
+                        }
+                        else
+                        {
+                            <tr class="danger">
+                                <td class="total">
+                                    <strong>TOTAL:</strong>
+                                </td>
+                                <td class="total-valor">
+                                    @ViewBag.Total.ToString("R$ 0.00")
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
