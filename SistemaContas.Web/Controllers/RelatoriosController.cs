@@ -32,24 +32,7 @@ namespace SistemaContas.Web.Controllers
             int id = Convert.ToInt32(User.Identity.Name);
             var lista = repositoryConta.ContasFinalizadas(id);
             ViewBag.Contas = lista;
-            ViewBag.Debitos = lista.Where(x => x.TipoOperacao == "Débito").Sum(x => x.ValorConta);
-            ViewBag.Creditos = lista.Where(x => x.TipoOperacao == "Crédito").Sum(x => x.ValorConta);
-            ViewBag.Total = repositoryConta.PegarExtrato(id);
             return View();
-        }
-        [Authorize(Roles = "Usuario, Administrador")]
-        public ActionResult ContasFinalizadasPDF()
-        {
-            var cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
-            int id = Convert.ToInt32(User.Identity.Name);
-            var lista = repositoryConta.ContasFinalizadas(id);
-            ViewBag.Contas = lista;
-            ViewBag.Debitos = lista.Where(x => x.TipoOperacao == "Débito").Sum(x => x.ValorConta);
-            ViewBag.Creditos = lista.Where(x => x.TipoOperacao == "Crédito").Sum(x => x.ValorConta);
-            ViewBag.Total = repositoryConta.PegarExtrato(id);
-            ViewBag.Pdf = true;
-
-            return GeraPDF.ConvertePdf("ContasFinalizadas", cliente);
         }
 
         [Authorize(Roles = "Usuario, Administrador")]

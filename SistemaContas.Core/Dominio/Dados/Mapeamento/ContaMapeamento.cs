@@ -19,6 +19,7 @@ namespace CadastroContas.Core.Dominio.Dados.Mapeamento
             Map(x => x.ValorConta).Not.Nullable();
             Map(x => x.Descricao).Not.Nullable();
             Map(x => x.CredorOuDevedor).Not.Nullable();
+            Map(x => x.DataFinalizacao);
 
             References(x => x.Cliente, "IdCliente").Not.Nullable();
 

@@ -55,11 +55,11 @@ namespace SistemaContas.Web.Controllers
             1,
             userId.ToString(),
             DateTime.Now,
-            DateTime.Now.AddMinutes(5),
+            DateTime.Now.AddMinutes(10),
             false,
             roles);
             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
-            cookie.Expires.AddMinutes(5);
+            cookie.Expires.AddMinutes(10);
             Response.Cookies.Add(cookie);
         }
 

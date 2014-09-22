@@ -106,6 +106,7 @@ namespace SistemaContas.Web.Controllers
                 {
                     pagamento.Status = "Finalizada";
                     conta.StatusConta = "Finalizada";
+                    conta.DataFinalizacao = DateTime.Now;
                     repositoryConta.AtualizarConta(conta);
                 }
                 pagamento.UltimaAtualizacao = DateTime.Now;
@@ -165,6 +166,7 @@ namespace SistemaContas.Web.Controllers
                 {
                     pagamento.Status = "Finalizada";
                     conta.StatusConta = "Finalizada";
+                    conta.DataFinalizacao = DateTime.Now;
                     repositoryConta.AtualizarConta(conta);
                 }
                 pagamento.UltimaAtualizacao = DateTime.Now;

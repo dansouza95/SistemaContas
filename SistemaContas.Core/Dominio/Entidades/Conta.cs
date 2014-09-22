@@ -16,6 +16,7 @@ namespace SistemaContas.Core.Dominio.Entidades
         public virtual DateTime DataVencimento { get; set; }
         public virtual String StatusConta { get; set; }
         public virtual String TipoOperacao { get; set; }
+        public virtual DateTime DataFinalizacao { get; set; }
         
     }
 }

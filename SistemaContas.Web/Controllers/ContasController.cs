@@ -43,6 +43,7 @@ namespace SistemaContas.Web.Controllers
         public ActionResult CadastrarConta(Conta conta)
         {
             conta.Cliente = (Cliente) Session["UsuarioLogado"];
+            conta.DataFinalizacao = DateTime.Now;
             conta.StatusConta = "Em aberto";
             repositoryConta.CadastraConta(conta);
             return RedirectToAction("SemTratativa", "Pendencias");
