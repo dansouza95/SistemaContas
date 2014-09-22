@@ -14,7 +14,7 @@ using System.Web.Script.Serialization;
 namespace SistemaContas.Web.Controllers
 {
     [Authorize]
-    [OutputCache(NoStore = true, Duration = 60, VaryByParam = "*")]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ContasController : Controller
     {
         [Inject]
@@ -23,7 +23,7 @@ namespace SistemaContas.Web.Controllers
         public IClienteRepository repositoryCliente { get; set; }
 
 
-        [Authorize(Roles="Usuario, Administrador"), ]
+        [Authorize(Roles="Usuario, Administrador")]
         public ActionResult Index()
         {
 

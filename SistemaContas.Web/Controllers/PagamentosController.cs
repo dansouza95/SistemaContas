@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace SistemaContas.Web.Controllers
 {
-        [OutputCache(NoStore = true, Duration = 60, VaryByParam = "*")]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class PagamentosController : Controller
     {
         [Inject]
