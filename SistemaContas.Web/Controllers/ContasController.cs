@@ -42,7 +42,7 @@ namespace SistemaContas.Web.Controllers
         [Authorize(Roles="Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CadastrarConta(Conta conta)
         {
-            conta.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
+            conta.Cliente = (Cliente) Session["UsuarioLogado"];
             conta.StatusConta = "Em aberto";
             repositoryConta.CadastraConta(conta);
             return RedirectToAction("SemTratativa", "Pendencias");
@@ -65,7 +65,7 @@ namespace SistemaContas.Web.Controllers
         [Authorize(Roles = "Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditarConta(Conta conta)
         {
-            conta.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
+            conta.Cliente = (Cliente)Session["UsuarioLogado"];
             conta.StatusConta = "Em aberto";
             repositoryConta.EditarConta(conta);
             return RedirectToAction("SemTratativa", "Pendencias");

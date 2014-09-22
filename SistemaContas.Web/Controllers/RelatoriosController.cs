@@ -1,6 +1,7 @@
 ﻿using CadastroContas.Core.Dominio.Dados.Contrato;
 using Ninject;
 using SistemaContas.Core.Dominio.Dados.Contrato;
+using SistemaContas.Core.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace SistemaContas.Web.Controllers
         public ActionResult ExtratoPDF()
         {
             int id = Convert.ToInt32(User.Identity.Name);
-            var cliente = repositoryCliente.PegarClientePorId(id);
+            var cliente = (Cliente)Session["UsuarioLogado"];
             var lista = repositoryTransacao.PegarTransacoes(id);
             foreach (var item in lista)
             {

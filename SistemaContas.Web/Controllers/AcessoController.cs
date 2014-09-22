@@ -38,6 +38,7 @@ namespace SistemaContas.Web.Controllers
             {
                 cliente = repository.PegarClientePorId(id);
                 AutorizarLogin(cliente.Id, cliente.Permissao);
+                Session.Add("UsuarioLogado", cliente);
                 return RedirectToAction("Index", "Contas");
             }
             else
@@ -95,6 +96,7 @@ namespace SistemaContas.Web.Controllers
             Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
             Response.Cache.SetNoStore();
 
+            Session.Remove("UsuarioLogado");
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }

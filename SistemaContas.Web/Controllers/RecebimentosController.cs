@@ -55,7 +55,7 @@ namespace SistemaContas.Web.Controllers
         {
             var conta = repositoryConta.PegarContaPorId(id);
             recebimento.Conta = conta;
-            recebimento.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
+            recebimento.Cliente = (Cliente)Session["UsuarioLogado"];
             recebimento.Valor = recebimento.Conta.ValorConta;
             recebimento.ValorParcela = recebimento.Valor / recebimento.NumeroParcelas;
             recebimento.ParcelasRestantes = recebimento.NumeroParcelas;
@@ -95,7 +95,7 @@ namespace SistemaContas.Web.Controllers
                 recebimento = repositoryPagamento.PegarMovimentacao(id);
 
                 recebimento.Conta = conta;
-                recebimento.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
+                recebimento.Cliente = (Cliente)Session["UsuarioLogado"];
                 recebimento.ValorRestante = recebimento.ValorRestante - recebimento.ValorParcela;
                 recebimento.ParcelasRestantes -= 1;
                 recebimento.Status = "Em andamento";
@@ -153,7 +153,7 @@ namespace SistemaContas.Web.Controllers
                 recebimento = repositoryPagamento.PegarMovimentacao(id);
 
                 recebimento.Conta = conta;
-                recebimento.Cliente = repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name));
+                recebimento.Cliente = (Cliente)Session["UsuarioLogado"];
                 var valor = recebimento.ValorRestante;
                 recebimento.ValorRestante = 0;
                 recebimento.ParcelasRestantes = 0;
