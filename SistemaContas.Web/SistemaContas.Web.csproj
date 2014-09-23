@@ -307,7 +307,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Contas\Index.cshtml" />
+    <Content Include="Views\Relatorios\Index.cshtml" />
     <Content Include="Views\Acesso\RegistroUsuario.cshtml" />
     <Content Include="Views\Contas\CadastrarConta.cshtml" />
     <Content Include="Views\Relatorios\ContasFinalizadas.cshtml" />

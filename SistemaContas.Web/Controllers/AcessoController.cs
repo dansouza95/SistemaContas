@@ -25,7 +25,7 @@ namespace SistemaContas.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {
@@ -41,7 +41,7 @@ namespace SistemaContas.Web.Controllers
                 cliente = repository.PegarClientePorId(id);
                 AutorizarLogin(cliente.Id, cliente.Permissao);
                 Session.Add("UsuarioLogado", cliente);
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {
@@ -69,7 +69,7 @@ namespace SistemaContas.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {

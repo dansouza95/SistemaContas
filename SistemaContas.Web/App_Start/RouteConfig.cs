@@ -16,7 +16,7 @@ namespace SistemaContas.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Contas", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Relatorios", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -24,7 +24,15 @@ namespace SistemaContas.Web.Controllers
         public IMovimentacaoRepository repositoryMovimentacao { get; set; }
 
 
+        [Authorize(Roles = "Usuario, Administrador")]
+        public ActionResult Index()
+        {
+            int id = Convert.ToInt32(User.Identity.Name);
+            ViewBag.Creditos = repositoryTransacao.PegarTransacoes(id).Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao).ToString("0.00").Replace(",",".");
+            ViewBag.Debitos = repositoryTransacao.PegarTransacoes(id).Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao).ToString("0.00").Replace(",", ".");
 
+            return View();
+        }
 
         [Authorize(Roles = "Usuario, Administrador")]        
         public ActionResult ContasFinalizadas()

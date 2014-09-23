@@ -23,15 +23,7 @@ namespace SistemaContas.Web.Controllers
         public IClienteRepository repositoryCliente { get; set; }
 
 
-        [Authorize(Roles="Usuario, Administrador")]
-        public ActionResult Index()
-        {
-
-            ViewBag.Creditos = repositoryConta.Creditos(Convert.ToInt32(User.Identity.Name)).ToString("0.00").Replace(",",".");
-            ViewBag.Debitos = repositoryConta.Debitos(Convert.ToInt32(User.Identity.Name)).ToString("0.00").Replace(",",".");
-            
-            return View();
-        }
+        
 
         [Authorize(Roles="Usuario, Administrador")]
         public ActionResult CadastrarConta()
@@ -61,7 +53,7 @@ namespace SistemaContas.Web.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Relatorios");
             }
             else
             {
@@ -96,7 +88,7 @@ namespace SistemaContas.Web.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {
@@ -110,7 +102,7 @@ namespace SistemaContas.Web.Controllers
         {
             conta = repositoryConta.PegarContaPorId(id);
             repositoryConta.DeletarConta(conta);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Relatorios");
         }
 
     }

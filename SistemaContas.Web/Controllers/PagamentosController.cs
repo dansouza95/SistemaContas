@@ -35,7 +35,7 @@ namespace SistemaContas.Web.Controllers
             var conta = repositoryConta.PegarContaPorId(id);
             if (conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada")
             {
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {
@@ -92,7 +92,7 @@ namespace SistemaContas.Web.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Contas");
+                    return RedirectToAction("Index", "Relatorios");
                 }
         }
 
@@ -142,7 +142,7 @@ namespace SistemaContas.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
         }
 
@@ -159,7 +159,7 @@ namespace SistemaContas.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
         }
 
@@ -210,7 +210,7 @@ namespace SistemaContas.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Contas");
+                return RedirectToAction("Index", "Relatorios");
             }
         }
         
