@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ValorConta, "Valor (R$):", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ValorConta, new { htmlAttributes = new { @class = "col-md-10 form-control", id = "txtValorConta", @required = "required", @autofocus = "true" } })
+                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "col-md-10 form-control", id = "txtValorConta", @required = "required", @autofocus = "true" } })
                 <span id="verificadorValor" class="control-label col-md-2"></span>
             </div>
         </div>
