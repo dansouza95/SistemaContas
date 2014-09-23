@@ -66,6 +66,7 @@ namespace SistemaContas.Web.Controllers
             else
             {
                 var conta = repositoryConta.PegarContaPorId(id);
+                conta.Valor = conta.ValorConta.ToString("0.00");
                 return View(conta);
             }
         }
@@ -73,7 +74,7 @@ namespace SistemaContas.Web.Controllers
         [Authorize(Roles = "Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditarConta(Conta conta)
         {
-            
+            conta.ValorConta = Convert.ToDouble(conta.Valor);
             if (Session["UsuarioLogado"] != null)
             {
                 conta.Cliente = (Cliente)Session["UsuarioLogado"];
