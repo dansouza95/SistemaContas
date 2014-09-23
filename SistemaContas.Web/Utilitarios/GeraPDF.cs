@@ -18,7 +18,7 @@ namespace SistemaContas.Web
                 FileName = nomeView + "_" + cliente.Nome.Replace(" ", "_") + ".pdf",
                 PageSize = Size.A4,
                 IsGrayScale = true,
-                PageMargins = new Margins { Bottom = 5, Left = 5, Right = 5, Top = 5 }
+                PageMargins = new Margins { Bottom = 5, Left = 5, Right = 5, Top = 0 }
             };
             return pdf;
         }

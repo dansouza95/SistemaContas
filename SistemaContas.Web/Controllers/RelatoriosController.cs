@@ -57,15 +57,24 @@ namespace SistemaContas.Web.Controllers
         public ActionResult ExtratoPDF()
         {
             int id = Convert.ToInt32(User.Identity.Name);
-            var cliente = (Cliente)Session["UsuarioLogado"];
+            
             var lista = repositoryTransacao.PegarTransacoes(id);
             foreach (var item in lista)
             {
                 item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
                 item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
             }
-
-
+            Cliente cliente = new Cliente();
+            if (Session["UsuarioLogado"] != null)
+            {
+                cliente = (Cliente)Session["UsuarioLogado"];
+            }
+            else
+            {
+                Session.Add("UsuarioLogado",repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
+                cliente = (Cliente)Session["UsuarioLogado"];
+            }
+            ViewBag.Cliente = cliente;
             ViewBag.Historico = lista;
             ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
             ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);

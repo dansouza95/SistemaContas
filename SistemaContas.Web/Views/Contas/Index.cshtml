@@ -23,6 +23,8 @@
 @section Scripts{
     <script src="~/Scripts/Chart.js"></script>
     <script>
+        var dados = {valor1: @Html.Raw(ViewBag.Creditos), valor2: @Html.Raw(ViewBag.Debitos)};
+
         var barChartData = {
             labels: ["Entrada", "Saída"],
             datasets: [{
@@ -30,23 +32,23 @@
                 strokeColor : "rgba(151,187,205,0.8)",
                 highlightFill : "rgba(151,187,205,0.75)",
                 highlightStroke : "rgba(151,187,205,1)",
-                data: @Html.Raw(ViewBag.Dados)
-            }]
+                data: dados
+                }]
 
         }
         var opts = {
-            scaleShowValues: true, 
+            scaleShowValues: true,
             scaleValuePaddingX: 13,
             scaleValuePaddingY: 13,
             responsive: true
         };
         $(document).ready(function(){
-            
-                var ctx = document.getElementById("graficos").getContext("2d");
-                $(document).myBar = new Chart(ctx).Bar(barChartData, opts);
-                barChartData.update();
+
+            var ctx = document.getElementById("graficos").getContext("2d");
+            $(document).myBar = new Chart(ctx).Bar(barChartData, opts);
+            barChartData.update();
         });
 
-      
+
 </script>
 }

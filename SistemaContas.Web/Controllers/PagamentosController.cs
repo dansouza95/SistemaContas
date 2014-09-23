@@ -40,7 +40,7 @@ namespace SistemaContas.Web.Controllers
             else
             {
                 List<string> lista = new List<string>();
-                for (int i = 1; i < 6; i++)
+                for (int i = 1; i < 11; i++)
                 {
                     lista.Add(i.ToString());
                 }

@@ -27,10 +27,9 @@ namespace SistemaContas.Web.Controllers
         public ActionResult Index()
         {
 
-            var Creditos = repositoryConta.Creditos(Convert.ToInt32(User.Identity.Name));
-            var Debitos = repositoryConta.Debitos(Convert.ToInt32(User.Identity.Name));
-            double[] dados = new double[2] {Creditos, Debitos };
-            ViewBag.Dados = new JavaScriptSerializer().Serialize(dados);
+            ViewBag.Creditos = repositoryConta.Creditos(Convert.ToInt32(User.Identity.Name)).ToString("0.00").Replace(",",".");
+            ViewBag.Debitos = repositoryConta.Debitos(Convert.ToInt32(User.Identity.Name)).ToString("0.00").Replace(",",".");
+            
             return View();
         }
 
