@@ -9,18 +9,40 @@
 {
     @Html.AntiForgeryToken()
     
+    <style>
+        table{width:400px}td{width:50%; text-align:left}
+    </style>
     
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumeroParcelas, "Número de parcelas: ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas,"Selecionar", new {@id="dropDownParcelas", @class="col-md-10 form-control", @required="true"})
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label><strong>Número de parcelas:</strong></label>
+                        </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas, "Selecionar", new { @id = "dropDownParcelas", @class = "col-md-10 form-control", @required = "true" })
 
-            </div>
-        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><strong>Valor da Parcela:</strong></label>
+                </td>
+                <td>
+                    <div id="div_ValorParcela" class="col-md-10">
+                        
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Iniciar pagamento" class="btn btn-default" id="btn_gravarPagamento" />
@@ -31,14 +53,27 @@
 
 @section Scripts{
     <script>
-        $('#btn_gravarPagamento').click(function () {
-            if ($('#dropDownParcelas').val() == "Selecionar") {
-                alert('Selecione o número de parcelas!');
-            }
-            else {
-                $('#frm_cadastroPagamentos').submit();
-            }
-        });
+    $('#btn_gravarPagamento').click(function () {
+        if ($('#dropDownParcelas').val() == "Selecionar") {
+            alert('Selecione o número de parcelas!');
+        }
+        else {
+            $('#frm_cadastroPagamentos').submit();
+        }
+    });
+    $('#dropDownParcelas').change(function () {
+
+        var dropDownParcelas = $('#dropDownParcelas');
+        var div = $('#div_ValorParcela');
+        div.html("");
+        if (dropDownParcelas.val() != "") {
+            var valorPagamento = @Html.Raw(ViewBag.Conta.ValorConta.ToString().Replace(",", "."));
+            var numParcelas = dropDownParcelas.val();
+            var parcela = (valorPagamento/numParcelas).toFixed(2);
+            var exibir = "R$ " + parcela.toString().replace(".",",");
+            div.html(exibir).show();
+        }
+    });
     </script>
 }
 @Html.ActionLink("Voltar ao início", "Index", new { @controller = "Contas" })

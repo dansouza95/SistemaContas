@@ -46,6 +46,7 @@ namespace SistemaContas.Web.Controllers
                 ViewBag.ListaParcelas = numeroParcelas;
                 Movimentacao recebimento = new Movimentacao();
                 recebimento.Conta = repositoryConta.PegarContaPorId(id);
+                ViewBag.Conta = repositoryConta.PegarContaPorId(id);
                 return View();
             }
         }

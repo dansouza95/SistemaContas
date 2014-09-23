@@ -30,7 +30,7 @@ namespace SistemaContas.Web.Controllers
         
 
         [Authorize(Roles = "Usuario, Administrador")]
-        public ActionResult CadastrarPagamento(int id)
+        public ActionResult CadastrarPagamento(int id=0)
         {
             var conta = repositoryConta.PegarContaPorId(id);
             if (conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada")
@@ -46,8 +46,7 @@ namespace SistemaContas.Web.Controllers
                 }
                 SelectList numeroParcelas = new SelectList(lista);
                 ViewBag.ListaParcelas = numeroParcelas;
-                Movimentacao pagamento = new Movimentacao();
-                pagamento.Conta = repositoryConta.PegarContaPorId(id);
+                ViewBag.Conta = repositoryConta.PegarContaPorId(id);
                 return View();
             }
         }

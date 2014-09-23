@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Conta>
-@{
+﻿@{
     ViewBag.Title = "Contas sem tratativa";
 }
 
@@ -41,9 +40,9 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model != null)
+            @if (ViewBag.Lista != null)
             {
-                foreach (var item in Model)
+                foreach (var item in ViewBag.Lista)
                 {
                     if (item.DataVencimento < DateTime.Now)
                     {

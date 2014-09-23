@@ -17,6 +17,5 @@ namespace SistemaContas.Core.Dominio.Entidades
         public virtual String StatusConta { get; set; }
         public virtual String TipoOperacao { get; set; }
         public virtual DateTime UltimaAtualizacao { get; set; }
-        public virtual Double PorcentagemJurosAoMes { get; set; }
     }
 }

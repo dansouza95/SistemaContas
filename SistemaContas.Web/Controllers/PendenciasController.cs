@@ -18,14 +18,14 @@ namespace SistemaContas.Web.Controllers
         [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult SemTratativa()
         {
-            var lista = repositoryConta.ContasEmAberto(Convert.ToInt32(User.Identity.Name)).Where(x => x.StatusConta == "Em aberto");
-            return View(lista);
+            ViewBag.Lista = repositoryConta.ContasEmAberto(Convert.ToInt32(User.Identity.Name)).OrderBy(x => x.DataVencimento).Where(x => x.StatusConta == "Em aberto");
+            return View();
         }
 
         [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult EmAndamento()
         {
-            ViewBag.Lista = repositoryConta.ContasEmAberto(Convert.ToInt32(User.Identity.Name)).Where(x => x.StatusConta == "Em andamento");
+            ViewBag.Lista = repositoryConta.ContasEmAberto(Convert.ToInt32(User.Identity.Name)).OrderBy(x => x.DataVencimento).Where(x => x.StatusConta == "Em andamento");
             return View();
         }
     }
