@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>
-                    Credor/devedor
+                    Credor/Devedor
                 </th>
                 <th>
                     Descricao
@@ -42,47 +42,18 @@
         <tbody>
             @if (ViewBag.Lista != null)
             {
+                var classe = "";
                 foreach (var item in ViewBag.Lista)
                 {
-                    if (item.DataVencimento < DateTime.Now)
+                    if (item.DataVencimento.Date < DateTime.Now.Date)
                     {
-                        <tr class="danger">
-                            <td>
-                                @item.CredorOuDevedor
-                            </td>
-                            <td>
-                                @item.Descricao
-                            </td>
-                            <td>
-                                @item.ValorConta.ToString("R$ 0.00")
-                            </td>
-                            <td>
-                                @item.DataVencimento.ToString("dd/MM/yyyy")
-                            </td>
-                            <td>
-                                @item.TipoOperacao
-                            </td>
-                            <td>
-                                @if (item.TipoOperacao == "Crédito")
-                                {
-                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
-                                }
-                                else
-                                {
-                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
-                                }
-                            </td>
-                            <td>
-                                @Html.ActionLink("Editar", "EditarConta", new { @id = @item.Id, @controller = "Contas" })
-                            </td>
-                            <td>
-                                @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
-                            </td>
-                        </tr>
+                        classe = "danger";
                     }
                     else
                     {
-                        <tr>
+                        classe = "";
+                    }
+                        <tr class="@classe">
                             <td>
                                 @item.CredorOuDevedor
                             </td>
@@ -115,9 +86,6 @@
                                 @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
                             </td>
                         </tr>
-                    }
-
-
                 }
             }
         </tbody>

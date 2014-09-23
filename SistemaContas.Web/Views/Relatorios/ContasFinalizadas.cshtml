@@ -3,9 +3,9 @@
 }
 
         <style>
-            .form-group{margin-top:100px !important;}body{margin-left:50px;}table{margin-top:50px !important;width:80% !important;}.total-extrato{width:100%;}th{width:20%;}td{width:20%;}.div-extratos{margin-bottom:65px;margin-top:65px;}</style>
+            .form-group{margin-top:100px !important;}body{margin-left:50px;}table{margin-top:50px !important;width:90% !important;}.total-extrato{width:100%;}th{width:16.6%;}td{width:16.6%;}.div-extratos{margin-bottom:65px;margin-top:65px;}</style>
     
-<h3>Contas finalizadas</h3>
+<h3>Contas finalizadas</h3><br/>
 
     
     <table class="table table-bordered table-striped table-hover">
@@ -24,6 +24,9 @@
                     Tipo
                 </th>
                 <th>
+                    Data de vencimento
+                </th>
+                <th>
                     Data de fechamento
                 </th>
             </tr>
@@ -31,9 +34,18 @@
         <tbody>
             @if (ViewBag.Contas != null)
             {
+                var classe = "";
                 foreach (var item in ViewBag.Contas)
                 {
-                    <tr>
+                    if (item.DataVencimento.Date < item.UltimaAtualizacao.Date)
+                    {
+                        classe = "danger";
+                    }
+                    else
+                    {
+                        classe = "";
+                    }
+                    <tr class="@classe">
                         <td>
                             @item.CredorOuDevedor
                         </td>
@@ -45,6 +57,9 @@
                         </td>
                         <td>
                             @item.TipoOperacao
+                        </td>
+                        <td>
+                            @item.DataVencimento.ToString("dd/MM/yyyy")
                         </td>
                         <td>
                             @item.UltimaAtualizacao.ToString("dd/MM/yyyy")
