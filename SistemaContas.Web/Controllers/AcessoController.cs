@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -35,6 +37,12 @@ namespace SistemaContas.Web.Controllers
         [AllowAnonymous, AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Login(Cliente cliente)
         {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] senhaOriginal = ASCIIEncoding.Default.GetBytes(cliente.Senha);
+            Byte[] senhaCodificada = md5.ComputeHash(senhaOriginal);
+
+            string hash = BitConverter.ToString(senhaCodificada).Replace("-", "");
+            cliente.Senha = hash;
             int id = repository.LoginCliente(cliente);
             if (id > 0)
             {
@@ -80,6 +88,13 @@ namespace SistemaContas.Web.Controllers
         [AllowAnonymous, AcceptVerbs(HttpVerbs.Post)]
         public ActionResult RegistroUsuario(Cliente cliente)
         {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] senhaOriginal = ASCIIEncoding.Default.GetBytes(cliente.Senha);
+            Byte[] senhaCodificada = md5.ComputeHash(senhaOriginal);
+
+            string hash = BitConverter.ToString(senhaCodificada).Replace("-", "");
+            cliente.Senha = hash;
+
             cliente.Permissao = "Usuario";
             cliente.DataCadastro = DateTime.Now;
             repository.CadastraCliente(cliente);

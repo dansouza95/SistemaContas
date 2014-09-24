@@ -29,13 +29,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CredorOuDevedor, "Devedor:", htmlAttributes: new { @class = "control-label col-md-2", @id = "lbl_CredorDevedor" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CredorOuDevedor, new { htmlAttributes = new { @class = "col-md-10 form-control", id = "txtCredorOuDevedor", @required = "required", @maxlength = "40", @autofocus = "true", @pattern = "[a-zA-Z]{3,40}", @title = "Mínimo de 3 caracteres." } })
+                @Html.EditorFor(model => model.CredorOuDevedor, new { htmlAttributes = new { @class = "col-md-10 form-control", id = "txtCredorOuDevedor", @required = "required", @maxlength = "40", @autofocus = "true", @pattern = "^[a-zA-Z ]+{3,40}$", @title = "Mínimo de 3 caracteres." } })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Descricao, "Descrição:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "col-md-10 form-control", id = "txtDescricao", @required = "required", @maxlength = "200", @autofocus = "true", @pattern = "[a-zA-Z]{3,40}", @title = "Mínimo de 3 caracteres."}})
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "col-md-10 form-control", id = "txtDescricao", @required = "required", @maxlength = "200", @autofocus = "true", @pattern = "^[a-zA-Z ]+{3,40}$", @title = "Mínimo de 3 caracteres." } })
 
             </div>
         </div>
