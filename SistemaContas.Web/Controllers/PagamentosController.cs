@@ -83,24 +83,24 @@ namespace SistemaContas.Web.Controllers
         public ActionResult Parcela(int id = 0)
         {
             
-                var conta = repositoryConta.PegarContaPorId(id);
-                if (id != 0 && conta != null)
-                {
-                    var pagamento = repositoryPagamento.PegarMovimentacao(id);
-                    pagamento.Conta = conta;
-                    return View(pagamento);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Relatorios");
-                }
+            var conta = repositoryConta.PegarContaPorId(id);
+            if (id != 0 && conta != null && conta.StatusConta!="Finalizada" && conta.StatusConta!="Em aberto")
+            {
+                var pagamento = repositoryPagamento.PegarMovimentacao(id);
+                pagamento.Conta = conta;
+                return View(pagamento);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Relatorios");
+            }
         }
 
         [Authorize(Roles="Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Parcela(Movimentacao pagamento, int id=0)
         {
             var conta = repositoryConta.PegarContaPorId(id);
-            if (id != 0 && conta != null)
+            if (id != 0 && conta != null && conta.StatusConta != "Finalizada" && conta.StatusConta != "Em aberto")
             {
                 pagamento = repositoryPagamento.PegarMovimentacao(id);
 
@@ -151,7 +151,7 @@ namespace SistemaContas.Web.Controllers
         {
 
             var conta = repositoryConta.PegarContaPorId(id);
-            if (id != 0 && conta != null)
+            if (id != 0 && conta != null && conta.StatusConta != "Finalizada" && conta.StatusConta != "Em aberto")
             {
                 var pagamento = repositoryPagamento.PegarMovimentacao(id);
                 pagamento.Conta = repositoryConta.PegarContaPorId(id);
@@ -167,7 +167,7 @@ namespace SistemaContas.Web.Controllers
         public ActionResult QuitarPagamento(Movimentacao pagamento, int id = 0)
         {
             var conta = repositoryConta.PegarContaPorId(id);
-            if (id != 0 && conta != null)
+            if (id != 0 && conta != null && conta.StatusConta != "Finalizada" && conta.StatusConta != "Em aberto")
             {
                 pagamento = repositoryPagamento.PegarMovimentacao(id);
 
