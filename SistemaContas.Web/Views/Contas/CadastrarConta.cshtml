@@ -29,13 +29,13 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CredorOuDevedor, "Devedor:", htmlAttributes: new { @class = "control-label col-md-2", @id="lbl_CredorDevedor"})
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CredorOuDevedor, new { @class = "col-md-10 form-control", id = "txtCredorOuDevedor", @required = "required", @maxlength = "40", @autofocus = "true" })
+                    @Html.TextBoxFor(model => model.CredorOuDevedor, new { @class = "col-md-10 form-control", id = "txtCredorOuDevedor", @required = "required", @maxlength = "40", @autofocus = "true", @pattern = "[a-zA-Z]{3,40}", @title = "Mínimo de 3 caracteres." })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Descricao, "Descrição:", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Descricao, new { @class = "col-md-10 form-control", id = "txtDescricao", @required = "required", @maxlength = "200", @autofocus = "true" })
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "col-md-10 form-control", id = "txtDescricao", @required = "required", @maxlength = "50", @autofocus = "true", @pattern = "[a-zA-Z]{3,40}", @title = "Mínimo de 3 caracteres." })
 
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ValorConta, "Valor (R$):", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.ValorConta, new { @class = "col-md-10 form-control", id = "txtValorConta", @required = "required", @autofocus = "true" })
+                    @Html.TextBoxFor(model => model.ValorConta, new { @class = "col-md-10 form-control", id = "txtValorConta",  @required = "required", @autofocus = "true", @maxlenght="15"})
                     <span id="verificadorValor" class="control-label col-md-2"></span>
                 </div>
             </div>
