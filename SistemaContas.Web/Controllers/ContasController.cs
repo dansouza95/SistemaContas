@@ -88,7 +88,7 @@ namespace SistemaContas.Web.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction("Index", "Relatorios");
+                return RedirectToAction("SemTratativa", "Pendencias");
             }
             else
             {
@@ -102,7 +102,7 @@ namespace SistemaContas.Web.Controllers
         {
             conta = repositoryConta.PegarContaPorId(id);
             repositoryConta.DeletarConta(conta);
-            return RedirectToAction("Index", "Relatorios");
+            return RedirectToAction("SemTratativa", "Pendencias");
         }
 
     }

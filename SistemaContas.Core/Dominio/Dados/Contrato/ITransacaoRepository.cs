@@ -11,6 +11,5 @@ namespace SistemaContas.Core.Dominio.Dados.Contrato
     {
         void SalvarTransacao(Transacao transacao);
         List<Transacao> PegarTransacoes(int id);
-        Double PegarTotalTransacoes(int id);
     }
 }

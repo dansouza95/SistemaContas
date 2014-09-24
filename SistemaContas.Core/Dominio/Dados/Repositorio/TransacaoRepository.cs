@@ -46,31 +46,5 @@ namespace SistemaContas.Core.Dominio.Dados.Repositorio
                 }
             }
         }
-
-
-        public double PegarTotalTransacoes(int id)
-        {
-            using (ISession session = NHibernateConnection.OpenSession())
-            {
-                try
-                {
-                    var listaTransacoes = session.Query<Transacao>().Where(x => x.Cliente.Id == id).OrderBy(x => x.DataTransacao).ToList();
-                    foreach (var item in listaTransacoes)
-                    {
-                        if (item.TipoTransacao == "Débito")
-                        {
-                            item.ValorTransacao *= -1;
-                        }
-                    }
-                    var total = listaTransacoes.Sum(x => x.ValorTransacao);
-                    return total;
-                    
-                }
-                catch (Exception erro)
-                {
-                    return 0;
-                }
-            }
-        }
     }
 }

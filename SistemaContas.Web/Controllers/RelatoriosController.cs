@@ -28,13 +28,13 @@ namespace SistemaContas.Web.Controllers
         public ActionResult Index()
         {
             int id = Convert.ToInt32(User.Identity.Name);
-            ViewBag.Creditos = repositoryTransacao.PegarTransacoes(id).Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao).ToString("0.00").Replace(",",".");
+            ViewBag.Creditos = repositoryTransacao.PegarTransacoes(id).Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao).ToString("0.00").Replace(",", ".");
             ViewBag.Debitos = repositoryTransacao.PegarTransacoes(id).Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao).ToString("0.00").Replace(",", ".");
 
             return View();
         }
 
-        [Authorize(Roles = "Usuario, Administrador")]        
+        [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult ContasFinalizadas()
         {
             int id = Convert.ToInt32(User.Identity.Name);
@@ -44,51 +44,115 @@ namespace SistemaContas.Web.Controllers
         }
 
         [Authorize(Roles = "Usuario, Administrador")]
-        public ActionResult Extrato()
+        public ActionResult Extrato(int id = 0)
         {
-            int id = Convert.ToInt32(User.Identity.Name);
-            var lista = repositoryTransacao.PegarTransacoes(id);
-            foreach (var item in lista)
+            if (id > 0 && id <= 4)
             {
-                item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
-                item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
-            }
-            ViewBag.Historico = lista;
-            ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao=="Crédito").Sum(x => x.ValorTransacao);
-            ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
-            ViewBag.Total = repositoryTransacao.PegarTotalTransacoes(id);
-            return View();
-                
-        }
+                switch (id)
+                {
+                    case 1: getExtrato(7);
+                        break;
+                    case 2: getExtrato(15);
+                        break;
+                    case 3: getExtrato(30);
+                        break;
 
-        [Authorize(Roles = "Usuario, Administrador")]
-        public ActionResult ExtratoPDF()
-        {
-            int id = Convert.ToInt32(User.Identity.Name);
-            
-            var lista = repositoryTransacao.PegarTransacoes(id);
-            foreach (var item in lista)
-            {
-                item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
-                item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
-            }
-            Cliente cliente = new Cliente();
-            if (Session["UsuarioLogado"] != null)
-            {
-                cliente = (Cliente)Session["UsuarioLogado"];
+                    default: int idCliente = Convert.ToInt32(User.Identity.Name);
+                             var lista = repositoryTransacao.PegarTransacoes(idCliente);
+                             foreach (var item in lista)
+                             {
+                                 item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
+                                 item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
+                             }
+                             ViewBag.Historico = lista;
+                             ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
+                             ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
+                             ViewBag.Total = lista.Sum(x => x.ValorTransacao);
+                        break;
+                }
+                return View();
             }
             else
             {
-                Session.Add("UsuarioLogado",repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
-                cliente = (Cliente)Session["UsuarioLogado"];
+                return RedirectToAction("Index");
             }
-            ViewBag.Cliente = cliente;
+
+        }
+
+        public void getExtrato(int numDias)
+        {
+            var data = DateTime.Now.AddDays(numDias *-1);
+            var lista = repositoryTransacao.PegarTransacoes(Convert.ToInt32(User.Identity.Name)).Where(x => x.DataTransacao >= data);
+
+            foreach (var item in lista)
+            {
+                item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
+                item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
+            }
             ViewBag.Historico = lista;
             ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
             ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
-            ViewBag.Total = repositoryConta.PegarExtrato(id);
-            ViewBag.Pdf = true;
-            return GeraPDF.ConvertePdf("Extrato", cliente);
+            foreach(var item in lista)
+            {
+                if(item.TipoTransacao.Equals("Débito"))
+                {
+                    item.ValorTransacao *= -1;
+                }
+            }
+            ViewBag.Total = lista.Sum(x => x.ValorTransacao);
+            ViewBag.Informacao = "(Últimos "+ numDias.ToString() +" dias)";
+        }
+
+
+        [Authorize(Roles = "Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Extrato(Transacao tran, int id)
+        {
+            if (id > 0 && id <= 4)
+            {
+                Cliente cliente = new Cliente();
+                if (Session["UsuarioLogado"] != null)
+                {
+                    cliente = (Cliente)Session["UsuarioLogado"];
+                }
+                else
+                {
+                    Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
+                    cliente = (Cliente)Session["UsuarioLogado"];
+                }
+                switch (id)
+                {
+                    case 1: getExtrato(7);
+                        ViewBag.Pdf = true;
+                        break;
+                    case 2: getExtrato(15);
+                        ViewBag.Pdf = true;
+                        break;
+                    case 3: getExtrato(30);
+                        ViewBag.Pdf = true;
+                        break;
+
+                    default: int idCliente = Convert.ToInt32(User.Identity.Name);
+                        var lista = repositoryTransacao.PegarTransacoes(idCliente);
+                        foreach (var item in lista)
+                        {
+                            item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
+                            item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
+                        }
+                        ViewBag.Historico = lista;
+                        ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
+                        ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
+                        ViewBag.Total = lista.Sum(x => x.ValorTransacao);
+                        ViewBag.Pdf = true;
+                        
+                        break;
+                }
+                return GeraPDF.ConvertePdf("Extrato", cliente);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
     }
 }

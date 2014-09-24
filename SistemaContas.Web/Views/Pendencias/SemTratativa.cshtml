@@ -51,7 +51,14 @@
                     }
                     else
                     {
-                        classe = "";
+                        if (item.DataVencimento.Date < DateTime.Now.AddDays(5))
+                        {
+                            classe = "warning";
+                        }
+                        else
+                        {
+                            classe = "";
+                        }
                     }
                         <tr class="@classe">
                             <td>

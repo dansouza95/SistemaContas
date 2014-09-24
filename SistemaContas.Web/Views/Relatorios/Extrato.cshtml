@@ -10,9 +10,15 @@
         .form-group{margin-top:100px !important;}body{margin-left:50px;}.form-horizontal{margin-top:30px;width:90%;margin-bottom:100px;}.total-extrato{width:100%;}th{width:20% !important;}td{width:20%}h2{margin-left:20%;}button{margin-top:50px;}.table-debitos{margin-top:50px;}.div-extratos{margin-bottom:40px;margin-top:40px;}h4{font-size:20px;}button{width:100px !important;}.total{width:80% !important;}.total-valor{width:20% !important;}.cabecalho{margin-top:5px !important;}
         </style>
         
-    <h2>Extrato</h2>
+    @if (ViewBag.Informacao != null) { 
+    <h2>Extrato @ViewBag.Informacao</h2>
+    }
+    else
+    {
+        <h2>Extrato Completo</h2>
+    }
 
-    @using (Html.BeginForm("ExtratoPDF", "Relatorios", FormMethod.Post, new { @id = "frm_extrato", @class = "form-horizontal" }))
+    @using (Html.BeginForm("Extrato", "Relatorios", FormMethod.Post, new { @id = "frm_extrato", @class = "form-horizontal" }))
     {
         <div class="div-extratos">
             <h4>Créditos</h4>
