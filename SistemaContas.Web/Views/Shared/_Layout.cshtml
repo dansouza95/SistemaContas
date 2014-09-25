@@ -16,7 +16,9 @@
         @if (User.Identity.IsAuthenticated) 
         {
             <div class="navbar-header">
-                <a href="~/Relatorios/Index" class="navbar-brand">Início</a>
+                @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "glyphicon glyphicon-home navbar-brand" })
+
+
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -28,7 +30,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contas <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="themes" role="menu">
-                            <li><a href="~/Contas/CadastrarConta">Cadastro</a></li>
+                            <li><a href="~/Contas/CadastrarConta">Nova conta</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

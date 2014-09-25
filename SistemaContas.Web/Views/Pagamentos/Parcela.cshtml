@@ -3,7 +3,7 @@
     ViewBag.Title = "Atualização pagamento";
 }
 
-
+<h2><strong>Confirma o pagamento da parcela abaixo?</strong></h2>
 @using (Html.BeginForm("Parcela", "Pagamentos", FormMethod.Post, new { @id = "frm_pagamentoParcela" }))
 {
     @Html.AntiForgeryToken()
@@ -14,7 +14,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            <h2><strong>Confirma o pagamento da parcela abaixo?</strong></h2>
+            
             <table>
                 <tr>
                     <td><strong>Descrição da conta:</strong> </td>
@@ -42,4 +42,4 @@
         </div>
     </div>
 }
-@Html.ActionLink("Voltar ao início", "Index", "Relatorios")
+@Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })

@@ -12,5 +12,6 @@ namespace SistemaContas.Core.Dominio.Dados.Contrato
         void SalvarOuAtualizarMovimentacao(Movimentacao movimentacao);
         Movimentacao PegarMovimentacao(int id);
         void SalvarMovimentacao(Movimentacao movimentacao);
+        List<Movimentacao> PegarMovimentacoesNaoFinalizadas();
     }
 }

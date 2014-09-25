@@ -3,7 +3,7 @@
     ViewBag.Title = "Quitação de recebimento";
 }
 
-<h2>Quitação de recebimento</h2>
+<h3><strong>ATENÇÃO: Deseja dar baixa no recebimento abaixo?</strong></h3>
 
 @using (Html.BeginForm("QuitarRecebimento", "Recebimentos", FormMethod.Post, new { @id = "frm_QuitarRecebimento" }))
 {
@@ -15,7 +15,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            <h3><strong>ATENÇÃO: Deseja dar baixa no recebimento abaixo?</strong></h3>
+            
             <table>
                 <tr>
                     <td><strong>Descrição da conta:</strong> </td>
@@ -51,4 +51,4 @@
         </div>
     </div>
 }
-@Html.ActionLink("Voltar ao início", "Index", "Relatorios")
+@Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })

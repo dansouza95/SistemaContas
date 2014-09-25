@@ -11,7 +11,7 @@
 <h2>Contas pendentes</h2>
 <div class="form-horizontal">
 
-    <table class="table table-hover table-bordered">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>
@@ -27,16 +27,9 @@
                     Data de vencimento
                 </th>
                 <th>Tipo de Operação</th>
-                <th>
-                    Tratativa
-                </th>
-                <th>
-                    Edição
-                </th>
-                <th>
-                    Exclusão
-                </th>
-
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -51,14 +44,7 @@
                     }
                     else
                     {
-                        if (item.DataVencimento.Date < DateTime.Now.AddDays(5))
-                        {
-                            classe = "warning";
-                        }
-                        else
-                        {
                             classe = "";
-                        }
                     }
                         <tr class="@classe">
                             <td>
@@ -79,23 +65,23 @@
                             <td>
                                 @if (item.TipoOperacao == "Crédito")
                                 {
-                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id })
+                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id }, new { @class="btn btn-primary"})
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id })
+                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id }, new {@class="btn btn-primary"})
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "EditarConta", new { @id = @item.Id, @controller = "Contas" })
+                                @Html.ActionLink(" ", "EditarConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-pencil" })
                             </td>
                             <td>
-                                @Html.ActionLink("Excluir", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" })
+                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
                             </td>
                         </tr>
                 }
             }
         </tbody>
     </table>
-    @Html.ActionLink("Voltar ao início", "Index", "Relatorios")
+    @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
 </div>

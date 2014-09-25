@@ -4,7 +4,7 @@
 }
 
 <h2>Nova conta a receber</h2>
-
+<hr />
 @using (Html.BeginForm("CadastrarRecebimento", "Recebimentos", FormMethod.Post, new { @id = "frm_cadastroRecebimentos" }))
 {
     @Html.AntiForgeryToken()
@@ -84,4 +84,4 @@
         });
     </script>
 }
-@Html.ActionLink("Voltar ao início", "Index", "Relatorios")
+@Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })

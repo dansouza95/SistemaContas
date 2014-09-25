@@ -60,7 +60,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button type="submit" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Salvar">
-                    <span class="glyphicon glyphicon-floppy-saved"></span>
+                    <span class="glyphicon glyphicon-floppy-save"></span>
                 </button>
             </div>
         </div>
@@ -68,7 +68,7 @@
 }
 
 <div>
-    @Html.ActionLink("Voltar ao início", "Index", "Relatorios")
+    @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
 </div>
 
 @section Scripts{

@@ -15,7 +15,7 @@
         width: 90% !important;
     }
 </style>
-
+<hr />
 @using (Html.BeginForm("RegistroUsuario", "Acesso", FormMethod.Post, new { id = "frm_registro" }))
 {
     <div class="form-group">
@@ -25,7 +25,7 @@
                     @Html.LabelFor(x => x.Nome, "Nome:", new { @class = "col-md-2 control-label" })
                 </td>
                 <td>
-                    @Html.TextBoxFor(x => x.Nome, new { @class = "col-md-10 form-control", id = "txtNome", @required = "true", @maxlength = "40", @autofocus = "true", @pattern = "[a-zA-Z ]{3,40}", @title = "O nome precisa conter ao menos 2 letras." })
+                    @Html.TextBoxFor(x => x.Nome, new { @class = "col-md-10 form-control", id = "txtNome", @required = "true", @maxlength = "40", @autofocus = "true", @pattern = "[a-zA-Z ]+{3,40}", @title = "O nome precisa conter ao menos 2 letras." })
                 </td>
             </tr>
             <tr>

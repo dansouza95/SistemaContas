@@ -78,5 +78,15 @@ namespace SistemaContas.Core.Dominio.Dados.Repositorio
                 }
             }
         }
+
+
+        public List<Movimentacao> PegarMovimentacoesNaoFinalizadas()
+        {
+            using (ISession session = NHibernateConnection.OpenSession())
+            {
+                var lista = session.Query<Movimentacao>().Where(x => x.Status != "Finalizada").OrderBy(x => x.Conta.DataVencimento).ToList();
+                return lista;
+            }
+        }
     }
 }
