@@ -33,7 +33,7 @@ namespace SistemaContas.Web.Controllers
         public ActionResult CadastrarPagamento(int id=0)
         {
             var conta = repositoryConta.PegarContaPorId(id);
-            if (conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada")
+            if ((conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada") && conta != null)
             {
                 return RedirectToAction("Index", "Relatorios");
             }

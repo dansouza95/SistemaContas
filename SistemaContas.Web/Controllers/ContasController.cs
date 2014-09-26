@@ -2,6 +2,7 @@
 using Ninject;
 using Rotativa;
 using Rotativa.Options;
+using SistemaContas.Core.Dominio.Dados.Contrato;
 using SistemaContas.Core.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,12 @@ namespace SistemaContas.Web.Controllers
         public IContaRepository repositoryConta { get; set; }
         [Inject]
         public IClienteRepository repositoryCliente { get; set; }
+        [Inject]
+        public ITransacaoRepository repositoryTransacao { get; set; }
+        [Inject]
+        public IMovimentacaoRepository repositoryMovimentacao { get; set; }
 
 
-        
 
         [Authorize(Roles="Usuario, Administrador")]
         public ActionResult CadastrarConta()
@@ -88,12 +92,19 @@ namespace SistemaContas.Web.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction("SemTratativa", "Pendencias");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {
                 var conta = repositoryConta.PegarContaPorId(id);
-                return View(conta);
+                if (conta != null)
+                {
+                    return View(conta);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Relatorios");
+                }
             }
         }
 
@@ -101,8 +112,13 @@ namespace SistemaContas.Web.Controllers
         public ActionResult ExcluirConta(Conta conta, int id)
         {
             conta = repositoryConta.PegarContaPorId(id);
+            var listaTransacoes = repositoryTransacao.PegarTransacoesPorConta(conta.Id);
+            var movimentacao = repositoryMovimentacao.PegarMovimentacao(conta.Id);
+            if (listaTransacoes.Count > 0) { repositoryTransacao.ExcluirTransacoes(listaTransacoes); }
+            if (movimentacao != null) { repositoryMovimentacao.ExcluirMovimentacao(movimentacao); }
+            
             repositoryConta.DeletarConta(conta);
-            return RedirectToAction("SemTratativa", "Pendencias");
+            return RedirectToAction("Index", "Relatorios");
         }
 
     }

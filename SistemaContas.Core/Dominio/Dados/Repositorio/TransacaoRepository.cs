@@ -46,5 +46,37 @@ namespace SistemaContas.Core.Dominio.Dados.Repositorio
                 }
             }
         }
+
+
+        public List<Transacao> PegarTransacoesPorConta(int id)
+        {
+            using (ISession session = NHibernateConnection.OpenSession())
+            {
+                var lista = session.Query<Transacao>().Where(x => x.Conta.Id == id).ToList();
+                return lista;
+            }
+        }
+
+        public void ExcluirTransacoes(List<Transacao> lista)
+        {
+            using (ISession session = NHibernateConnection.OpenSession())
+            {
+                using (ITransaction tran = session.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var item in lista)
+                        {
+                            session.Delete(item);
+                        }
+                        tran.Commit();
+                    }
+                    catch (Exception erro)
+                    {
+                        tran.Rollback();
+                    }
+                }
+            }
+        }
     }
 }

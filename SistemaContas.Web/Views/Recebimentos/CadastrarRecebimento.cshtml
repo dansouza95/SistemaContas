@@ -53,22 +53,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Iniciar recebimento" class="btn btn-default" id="btn_gravarRecebimento" />
+                <input type="submit" value="Iniciar recebimento" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
+
 
 @section Scripts{
     <script>
-        $('#btn_gravarRecebimento').click(function () {
-            if ($('#dropDownParcelas').val() == "Selecionar") {
-                alert('Selecione o número de parcelas!');
-            }
-            else {
-                $('#frm_cadastroRecebimentos').submit();
-            }
-        });
         $('#dropDownParcelas').change(function () {
 
             var dropDownParcelas = $('#dropDownParcelas');
@@ -85,3 +77,4 @@
     </script>
 }
 @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+}

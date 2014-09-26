@@ -31,7 +31,7 @@ namespace SistemaContas.Web.Controllers
         public ActionResult CadastrarRecebimento(int id)
         {
             var conta = repositoryConta.PegarContaPorId(id);
-            if (conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada")
+            if ((conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada") && conta != null)
             {
                 return RedirectToAction("Index", "Relatorios");
             }

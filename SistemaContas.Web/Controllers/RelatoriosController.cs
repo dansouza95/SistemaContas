@@ -119,13 +119,10 @@ namespace SistemaContas.Web.Controllers
                 switch (id)
                 {
                     case 1: getExtrato(7);
-                        ViewBag.Pdf = true;
                         break;
                     case 2: getExtrato(15);
-                        ViewBag.Pdf = true;
                         break;
                     case 3: getExtrato(30);
-                        ViewBag.Pdf = true;
                         break;
 
                     default: int idCliente = Convert.ToInt32(User.Identity.Name);
@@ -139,10 +136,10 @@ namespace SistemaContas.Web.Controllers
                         ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
                         ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
                         ViewBag.Total = lista.Sum(x => x.ValorTransacao);
-                        ViewBag.Pdf = true;
                         
                         break;
                 }
+                ViewBag.Pdf = true;
                 return GeraPDF.ConvertePdf("Extrato", cliente);
             }
             else

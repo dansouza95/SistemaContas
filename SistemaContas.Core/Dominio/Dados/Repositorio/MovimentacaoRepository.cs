@@ -88,5 +88,25 @@ namespace SistemaContas.Core.Dominio.Dados.Repositorio
                 return lista;
             }
         }
+
+
+        public void ExcluirMovimentacao(Movimentacao movimentacao)
+        {
+            using (ISession session = NHibernateConnection.OpenSession())
+            {
+                using (ITransaction tran = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Delete(movimentacao);
+                        tran.Commit();
+                    }
+                    catch (Exception erro)
+                    {
+                        tran.Rollback();
+                    }
+                }
+            }
+        }
     }
 }

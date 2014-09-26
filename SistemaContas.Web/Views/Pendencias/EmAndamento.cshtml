@@ -33,6 +33,7 @@
                     Tipo
                 </th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -44,11 +45,6 @@
                     if (item.Conta.DataVencimento.Date < DateTime.Now.Date)
                     {
                         classe = "danger";
-                    }
-                    else
-                    {
-                        
-                            classe = "";
                     }
                         <tr class="@classe">
                             <td>
@@ -71,6 +67,9 @@
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </td>
+                            <td>
+                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Conta.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
+                            </td>
                         </tr>
                 }
             }
@@ -78,7 +77,7 @@
     </table>
     @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
 </div>
-<div class="modal fade" id="modalMovimentacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal in" id="modalMovimentacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -118,13 +117,12 @@
                     if(d.Tipo == "Crédito"){
                         var link = "<a class=\"btn btn-primary\" href=\"/Recebimentos/Parcela/"+d.Conta.Id+"\">Incluir parcela</a>"+
                                    "<a class=\"btn btn-default\" href=\"/Recebimentos/QuitarRecebimento/"+d.Conta.Id+"\">Quitar recebimento</a>";
-                        $('.modal-footer').html(link);
                     }
                     else{
                         var link = "<a class=\"btn btn-default\" href=\"/Pagamentos/Parcela/"+d.Conta.Id+"\">Incluir parcela</a>"+
                                    "<a class=\"btn btn-primary\" href=\"/Pagamentos/QuitarPagamento/"+d.Conta.Id+"\">Quitar pagamento</a>";
-                        $('.modal-footer').html(link);
                     }
+                    $('.modal-footer').html(link);
                 }
             });
         };

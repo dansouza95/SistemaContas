@@ -30,6 +30,9 @@
                 <th>
                     Data de fechamento
                 </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -64,6 +67,9 @@
                         </td>
                         <td>
                             @item.UltimaAtualizacao.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
                         </td>
                     </tr>
                 }
