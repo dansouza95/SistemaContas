@@ -65,5 +65,22 @@ namespace CadastroContas.Core.Dominio.Dados.Repositorio
                 }
             }
         }
+
+
+        public bool VerificarCadastro(string username)
+        {
+            using (ISession session = NHibernateConnection.OpenSession())
+            {
+                var cliente = session.Query<Cliente>().Where(x => x.Usuario.Equals(username)).SingleOrDefault();
+                if (cliente != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

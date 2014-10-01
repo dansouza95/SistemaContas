@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/Log.cshtml";
 }
 @model Cliente
 <!DOCTYPE html>
@@ -7,23 +7,66 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-
-
     <title>Login</title>
-    <link href="~/Content/Login.css" rel="stylesheet">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
 </head>
 <body>
     <div class="container">
 
-        @using (Html.BeginForm("Login", "Acesso", FormMethod.Post, new { @class = "form-signin", @id = "frm_login" })) 
+        @using (Html.BeginForm("Index", "Relatorios", FormMethod.Post, new { @class = "form-signin", @id = "frm_login" })) 
         { 
             <h2 class="form-signin-heading">Por favor, autentique-se.</h2>
             @Html.TextBoxFor(x => x.Usuario, new { @class = "col-md-10 form-control", id = "txtUsuario", @placeholder = "Digite o nome de usuário", @required = "true", @autofocus = "true", @maxlength = "30", @pattern = ".{8,30}", @title = "O usuário precisa conter ao menos 8 letras ou números." })
             @Html.PasswordFor(x => x.Senha, new { @class = "col-md-10 form-control", id = "txtSenha", @placeholder = "Digite a Senha", @required = "true", @autofocus = "true", @maxlength = "20", @pattern = ".{8,20}", @title = "A senha precisa conter ao menos 8 dígitos." })
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            <button class="btn btn-lg btn-primary btn-block" type="button" id="btn_login">Login</button>
             @Html.ActionLink("Não possuo cadastro", "RegistroUsuario")
         }
     </div>
+    @section Scripts{
+        <script>
+            var user = $('#txtUsuario');
+            var pass = $('#txtSenha');
+
+            $('#btn_login').click(function () {
+                if (validarCampos()) {
+                    var cliente = {
+                        Usuario: user.val(),
+                        Senha: pass.val()
+                    };
+                    $.ajax({
+                        url: '@Html.Raw(Url.Action("Logon","Acesso"))',
+                        dataType: 'json',
+                        type: 'post',
+                        data: { dados: JSON.stringify(cliente) }
+                    })
+                    .success(function (data) {
+                        if (data) {
+                            $('#frm_login').submit();
+                        }
+                        else {
+                            alert('Usuário ou senha inválidos!');
+                            user.empty();
+                            pass.empty();
+                        }
+                    })
+                    .error(function () {
+                        alert('Falha ao conectar ao servidor!');
+                    })
+                    ;
+                }
+                else {
+                    alert('Preencha os campos corretamente!');
+                }
+            });
+            function validarCampos() {
+                if (user.val().replace(" ", "") == "" || pass.val().replace(" ", "") == "")
+                    return false;
+                else
+                    return true
+            }
+
+        </script>
+    }
+
 </body>
 </html>

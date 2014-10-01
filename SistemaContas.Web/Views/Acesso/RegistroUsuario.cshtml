@@ -42,6 +42,7 @@
                 </td>
                 <td>
                     @Html.TextBoxFor(x => x.Usuario, new { @class = "col-md-10 form-control", @id = "txtUsuario", @required = "true", @maxlength = "30", @autofocus = "true", @pattern="^[a-zA-Z0-9]+{8,30}$", @title="O usuário precisa conter ao menos 8 letras ou números." })
+
                 </td>
             </tr>
             <tr>
@@ -54,7 +55,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="Confirmar" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Confirmar"/>
+                    <input type="button" value="Confirmar" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Confirmar" id="btn_confirmar"/>
                 </td>
             </tr>
         </table>
@@ -66,5 +67,40 @@
         $(document).ready(function () {
             $('.tool').tooltip();
         });
+        $('#btn_confirmar').click(function () {
+            if (ValidaCampos()) {
+                var user = $('#txtUsuario').val();
+                $.ajax({
+                    url: '@Html.Raw(Url.Action("Validar","Acesso"))',
+                    dataType: 'json',
+                    type: 'get',
+                    data: { usuario: user },
+                })
+                .success(function (data) {
+                    if (data == true) {
+                        alert('Nome de usuário já utilizado!');
+                    }
+                    else {
+                        $('#frm_registro').submit();
+                    }
+                })
+                .error(function () {
+                    alert('Falha ao validar dados!');
+                });
+            }
+            else {
+                alert('Preencha os campos corretamente!');
+            }
+        });
+
+        function ValidaCampos() {
+            if ($('#txtNome').val().replace(" ", "") == "" ||
+               $('#txtEmail').val().replace(" ", "") == "" ||
+               $('#txtUsuario').val().replace(" ", "") == "" ||
+                $('#txtSenha').val().replace(" ", "") == "")
+                return false;
+            else
+                return true;
+        }
     </script>
 }

@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 
 namespace SistemaContas.Web.Controllers
@@ -35,8 +36,11 @@ namespace SistemaContas.Web.Controllers
             }
         }
         [AllowAnonymous, AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Login(Cliente cliente)
+        public ActionResult Logon(string dados)
         {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Cliente cliente = js.Deserialize<Cliente>(dados);
+
             MD5 md5 = new MD5CryptoServiceProvider();
             Byte[] senhaOriginal = ASCIIEncoding.Default.GetBytes(cliente.Senha);
             Byte[] senhaCodificada = md5.ComputeHash(senhaOriginal);
@@ -49,14 +53,16 @@ namespace SistemaContas.Web.Controllers
                 cliente = repository.PegarClientePorId(id);
                 AutorizarLogin(cliente.Id, cliente.Permissao);
                 Session.Add("UsuarioLogado", cliente);
-                return RedirectToAction("Index", "Relatorios");
+                return Json(true,JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return RedirectToAction("Login");
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
 
         }
+
+
         public void AutorizarLogin(int userId, string roles)
         {
             FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
@@ -99,6 +105,12 @@ namespace SistemaContas.Web.Controllers
             cliente.DataCadastro = DateTime.Now;
             repository.CadastraCliente(cliente);
             return RedirectToAction("Login");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Validar(string usuario)
+        {
+            return Json(repository.VerificarCadastro(usuario), JsonRequestBehavior.AllowGet);
         }
 
 
