@@ -20,8 +20,8 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.TipoOperacao, "Tipo de Operação:", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <label>Crédito @Html.RadioButtonFor(x => x.TipoOperacao, "Crédito", new { @id = "radio_tipoOperacao1", @name = "radio_credito", @required = "required" })</label>
-                    <label>Débito @Html.RadioButtonFor(x => x.TipoOperacao, "Débito", new { @id = "radio_tipoOperacao2", @name = "radio_debito" })</label>
+                    <label>Crédito @Html.RadioButtonFor(x => x.TipoOperacao, "Crédito", new { @id = "Credito", @required = "required" })</label>
+                    <label>Débito @Html.RadioButtonFor(x => x.TipoOperacao, "Débito", new { @id = "Debito"})</label>
                 </div>
             </div>
             <hr />
@@ -29,13 +29,13 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CredorOuDevedor, "Devedor:", htmlAttributes: new { @class = "control-label col-md-2", @id="lbl_CredorDevedor"})
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CredorOuDevedor, new { @class = "col-md-10 form-control", @id = "txtCredorOuDevedor", @required = "required", @maxlength = "40", @autofocus = "true", @pattern = "^[a-zA-Z ]+{3,40}$", @title = "Mínimo de 3 caracteres." })
+                    @Html.TextBoxFor(model => model.CredorOuDevedor, new { @class = "col-md-10 form-control", @id = "CredorOuDevedor", @required = "required", @maxlength = "40", @autofocus = "true", @pattern = "^[a-zA-Z ]+{3,40}$", @title = "Mínimo de 3 caracteres." })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Descricao, "Descrição:", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Descricao, new { @class = "col-md-10 form-control", @id = "txtDescricao", @required = "required", @maxlength = "50", @autofocus = "true", @pattern = 
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "col-md-10 form-control", @id = "Descricao", @required = "required", @maxlength = "50", @autofocus = "true", @pattern = 
                    "^[a-zA-Z ]+{3,40}$", @title = "Mínimo de 3 caracteres." })
 
                 </div>
@@ -44,7 +44,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ValorConta, "Valor (R$):", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.ValorConta, new { @class = "col-md-10 form-control", @id = "txtValorConta",  @required = "required", @autofocus = "true", @maxlenght="15"})
+                    @Html.TextBoxFor(model => model.ValorConta, new { @class = "col-md-10 form-control", @id = "ValorConta",  @required = "required", @autofocus = "true", @maxlenght="15"})
                     <span id="verificadorValor" class="control-label col-md-2"></span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DataVencimento, "Data de vencimento: ", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.DataVencimento, htmlAttributes: new { @class = "col-md-10 form-control datepicker", @id = "txtDataVencimento", @maxlength = "10", @required = "required", @autofocus = "true"})
+                    @Html.TextBoxFor(model => model.DataVencimento, htmlAttributes: new { @class = "col-md-10 form-control datepicker", @id = "DataVencimento", @maxlength = "10", @required = "required", @autofocus = "true"})
                     <span id="verificadorData" class="control-label col-md-2"></span>
 
                 </div>
@@ -78,7 +78,7 @@
         $(document).ready(function () {
             $('.tool').tooltip();
 
-            $('#txtDataVencimento').datepicker({
+            $('#DataVencimento').datepicker({
                 language: 'pt-BR',
                 startDate: '-1y',
                 endDate: '+1y',
@@ -88,7 +88,7 @@
             });
         });
         $(document).ready(function () {
-            $("#txtValorConta").keydown(function (event) {
+            $("#ValorConta").keydown(function (event) {
                 if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
                     (event.keyCode == 65 && event.ctrlKey === true) ||
                     (event.keyCode == 67 && event.ctrlKey === true) ||
@@ -112,7 +112,7 @@
         });
 
         $(document).ready(function () {
-            $("#txtDataVencimento").keydown(function (event) {
+            $("#DataVencimento").keydown(function (event) {
                 if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
                     (event.keyCode == 65 && event.ctrlKey === true) ||
                     (event.keyCode == 67 && event.ctrlKey === true) ||
@@ -136,7 +136,7 @@
         });
 
         $(document).ready(function () {
-            $('#radio_tipoOperacao1').attr('checked', true);
+            $('#Credito').attr('checked', true);
 
             $('input[name=TipoOperacao]').click(function () {
                 var rbvalue = $(this).val();
@@ -155,7 +155,7 @@
 <script src="~/Scripts/jquery.moneymask.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#txtValorConta').maskMoney({
+            $('#ValorConta').maskMoney({
                 decimal: ',',
                 thousands:''
             });
@@ -165,7 +165,7 @@
 <script src="~/Scripts/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#txtDataVencimento').mask('00/00/0000');
+            $('#DataVencimento').mask('00/00/0000');
         });
     </script>
 }

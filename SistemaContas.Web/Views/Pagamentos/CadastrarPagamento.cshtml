@@ -26,7 +26,7 @@
                 </td>                
                 <td>
                     <div class="col-md-10">
-                        @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas, "Selecionar", new { @id = "dropDownParcelas", @class = "col-md-10 form-control", @required = "true" })
+                        @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas, "Selecionar", new { @id = "SelecionarNumeroParcelas", @class = "col-md-10 form-control", @required = "true" })
 
                     </div>
                 </td>
@@ -45,7 +45,7 @@
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Iniciar pagamento" class="btn btn-default"/>
+                <input type="submit" id="Confirmar" value="Iniciar pagamento" class="btn btn-default"/>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
     <script>
     $('#dropDownParcelas').change(function () {
 
-        var dropDownParcelas = $('#dropDownParcelas');
+        var dropDownParcelas = $('#SelecionarNumeroParcelas');
         var div = $('#div_ValorParcela');
         div.html("");
         if (dropDownParcelas.val() != "") {
