@@ -24,7 +24,7 @@
         <div class="div-extratos">
             <h4>Créditos</h4>
             <div class="panel panel-default">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped table-responsive">
                     <thead>
                         <tr>
                             <th>
@@ -67,7 +67,7 @@
                                             @item.DataTransacao.ToString("HH:mm")
                                         </td>
                                         <td>
-                                            @item.ValorTransacao.ToString("R$ 0.00")
+                                            @item.ValorTransacao.ToString("R$ #,#,0.00")
                                         </td>
                                     </tr>
                                 }
@@ -124,7 +124,7 @@
                                             @item.DataTransacao.ToString("HH:mm")
                                         </td>
                                         <td>
-                                            @item.ValorTransacao.ToString("R$ 0.00")
+                                            @item.ValorTransacao.ToString("R$ #,#,0.00")
                                         </td>
                                     </tr>
                                 }
@@ -144,7 +144,7 @@
                                 <strong>SUBTOTAL CRÉDITO:</strong>
                             </td>
                             <td class="total-valor">
-                                @ViewBag.OperacoesCredito.ToString("R$ 0.00")
+                                @ViewBag.OperacoesCredito.ToString("R$ #,#,0.00")
                             </td>
                         </tr>
                         <tr>
@@ -152,7 +152,7 @@
                                 <strong>SUBTOTAL DÉBITO:</strong>
                             </td>
                             <td class="total-valor">
-                                @ViewBag.OperacoesDebito.ToString("R$ 0.00")
+                                @ViewBag.OperacoesDebito.ToString("R$ #,#,0.00")
                             </td>
                         </tr>
                         @{ var classe = "";
@@ -166,7 +166,7 @@
                                 <strong>TOTAL:</strong>
                             </td>
                             <td class="total-valor">
-                                @ViewBag.Total.ToString("R$ 0.00")
+                                @ViewBag.Total.ToString("R$ #,#,0.00")
                             </td>
                         </tr>
                     </tbody>

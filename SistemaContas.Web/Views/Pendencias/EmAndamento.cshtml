@@ -32,8 +32,10 @@
                 <th>
                     Tipo
                 </th>
+                @if (ViewBag.Lista != null && ViewBag.Lista.Count > 0) { 
                 <th></th>
                 <th></th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -54,7 +56,7 @@
                                 @item.Conta.Descricao
                             </td>
                             <td>
-                                @item.Conta.ValorConta.ToString("R$ 0.00")
+                                @item.Conta.ValorConta.ToString("R$ #,#,0.00")
                             </td>
                             <td>
                                 @item.Conta.DataVencimento.ToString("dd/MM/yyyy")

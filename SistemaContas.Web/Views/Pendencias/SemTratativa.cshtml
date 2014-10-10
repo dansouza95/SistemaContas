@@ -27,9 +27,12 @@
                     Data de vencimento
                 </th>
                 <th>Tipo de Operação</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                @if (ViewBag.Lista != null && ViewBag.Lista.Count > 0) 
+                { 
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -54,7 +57,7 @@
                                 @item.Descricao
                             </td>
                             <td>
-                                @item.ValorConta.ToString("R$ 0.00")
+                                @item.ValorConta.ToString("R$ #,#,0.00")
                             </td>
                             <td>
                                 @item.DataVencimento.ToString("dd/MM/yyyy")
@@ -65,11 +68,11 @@
                             <td>
                                 @if (item.TipoOperacao == "Crédito")
                                 {
-                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id }, new { @class="btn btn-primary"})
+                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Id })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id }, new {@class="btn btn-primary"})
+                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Id })
                                 }
                             </td>
                             <td>

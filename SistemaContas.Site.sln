@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaContas.Web", "SistemaContas.Web\SistemaContas.Web.csproj", "{DE5C0257-D67B-4DD1-9AA9-7BA08E9D1AD6}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{444436
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaContas.Testes", "SistemaContas.Testes\SistemaContas.Testes.csproj", "{A299EA02-A407-462E-83B9-596B184F268E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,10 @@ Global
 		{3C4CC21E-128B-4049-8BEB-ADDD9BB305FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C4CC21E-128B-4049-8BEB-ADDD9BB305FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C4CC21E-128B-4049-8BEB-ADDD9BB305FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A299EA02-A407-462E-83B9-596B184F268E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A299EA02-A407-462E-83B9-596B184F268E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A299EA02-A407-462E-83B9-596B184F268E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A299EA02-A407-462E-83B9-596B184F268E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

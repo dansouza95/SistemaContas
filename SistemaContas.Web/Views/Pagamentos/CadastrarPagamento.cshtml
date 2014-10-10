@@ -3,7 +3,7 @@
     ViewBag.Title = "Novo Pagamento";
 }
 
-<h2>Nova conta a pagar</h2>
+<h2>@ViewBag.Conta.Descricao</h2>
 
 @using (Html.BeginForm("CadastrarPagamento", "Pagamentos", FormMethod.Post, new { @id = "frm_cadastroPagamentos" }))
 {

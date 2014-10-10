@@ -9,7 +9,7 @@
 <hr/>
 
     
-    <table class="table table-bordered table-striped table-hover">
+    <table class="table table-bordered table-striped table-hover table-responsive">
         <thead>
             <tr>
                 <th>
@@ -57,7 +57,7 @@
                             @item.Descricao
                         </td>
                         <td>
-                            @item.ValorConta.ToString("R$ 0.00")
+                            @item.ValorConta.ToString("R$ #,#,0.00")
                         </td>
                         <td>
                             @item.TipoOperacao

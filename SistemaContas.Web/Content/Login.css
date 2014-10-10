@@ -5,13 +5,14 @@
 }
 
 .form-signin {
-    margin-left:50px !important;
+    margin-left:auto !important;
     margin-bottom: auto !important;
     margin-right:auto !important;
     margin-top:auto !important;
   max-width: 380px;
   height: 300px;
   padding: 15px;
+  align-content:center;
   
 }
 .form-signin .form-signin-heading,
@@ -43,5 +44,10 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+table
+{
+    height:310px;
+    justify-content:center;
 }
 

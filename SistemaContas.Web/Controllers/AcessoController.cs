@@ -73,7 +73,7 @@ namespace SistemaContas.Web.Controllers
             false,
             roles);
             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
-            cookie.Expires.AddMinutes(10);
+            cookie.Expires = DateTime.Now.AddMinutes(10);
             Response.Cookies.Add(cookie);
         }
 
@@ -114,7 +114,7 @@ namespace SistemaContas.Web.Controllers
         }
 
 
-        [Authorize(Roles="Usuario, Administrador")]
+        [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult Logout()
         {
             foreach (var cookie in Response.Cookies.AllKeys)

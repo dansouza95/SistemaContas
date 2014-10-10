@@ -24,7 +24,7 @@ namespace SistemaContas.Web.Controllers
         [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult SemTratativa()
         {
-            ViewBag.Lista = repositoryConta.ContasEmAberto(Convert.ToInt32(User.Identity.Name)).OrderBy(x => x.DataVencimento).Where(x => x.StatusConta == "Em aberto");
+            ViewBag.Lista = repositoryConta.ContasEmAberto(Convert.ToInt32(User.Identity.Name)).OrderBy(x => x.DataVencimento).Where(x => x.StatusConta == "Em aberto").ToList();
             return View();
         }
 
