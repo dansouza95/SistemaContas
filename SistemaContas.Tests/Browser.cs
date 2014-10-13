@@ -59,7 +59,7 @@ namespace SistemaContas.Initializer
 
         internal static void PaginaInicial(string elemento)
         {
-            Assert.IsTrue(driver.FindElement(By.Id("graficos")).TagName.ToLower().Contains(elemento));
+            Assert.IsTrue(driver.FindElement(By.TagName(elemento)).TagName.ToLower().Contains(elemento));
         }
     }
 }

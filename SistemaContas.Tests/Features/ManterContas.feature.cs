@@ -82,7 +82,7 @@ testRunner.And("preencho o campo \"Senha\" com o valor \"01020300\"", ((string)(
 #line 8
 testRunner.And("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 9
-testRunner.Then("devo ver o elemento \"Grafico\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line 10
 testRunner.And("clico na opcao \"MenuContas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 11
@@ -94,13 +94,15 @@ testRunner.And("preencho o campo \"CredorOuDevedor\" com o valor \"Cliente\"", (
 #line 14
 testRunner.And("preencho o campo \"Descricao\" com o valor \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 15
-testRunner.And("preencho o campo \"Valor\" com o valor \"150,00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+testRunner.And("preencho o campo \"ValorConta\" com o valor \"150,00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 16
 testRunner.And("preencho o campo \"DataVencimento\" com o valor \"30/10/2014\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 17
-testRunner.When("clico na opcao \"Salvar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+testRunner.And("clico na opcao \"ValorConta\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 18
-testRunner.Then("devo ver o elemento \"TabelaPendenciasEmAberto\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+testRunner.When("clico na opcao \"btn_salvar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 19
+testRunner.Then("devo ver o elemento \"table\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             this.ScenarioCleanup();
         }

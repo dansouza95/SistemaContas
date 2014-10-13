@@ -86,7 +86,7 @@ testRunner.And("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlo
 #line 10
 testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 11
-testRunner.Then("devo ver o elemento \"txtUsuario\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+testRunner.Then("devo ver o elemento \"input\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             this.ScenarioCleanup();
         }
