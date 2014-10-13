@@ -68,11 +68,11 @@
                             <td>
                                 @if (item.TipoOperacao == "Crédito")
                                 {
-                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Id })
+                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Descricao })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Id })
+                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Descricao })
                                 }
                             </td>
                             <td>

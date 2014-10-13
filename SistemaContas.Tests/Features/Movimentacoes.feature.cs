@@ -19,20 +19,20 @@ namespace SistemaContas.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Manter conta")]
-    public partial class ManterContaFeature
+    [NUnit.Framework.DescriptionAttribute("Pagamento e recebimento de contas")]
+    public partial class PagamentoERecebimentoDeContasFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ManterContas.feature"
+#line 1 "Movimentacoes.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Manter conta", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Pagamento e recebimento de contas", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,11 +65,11 @@ namespace SistemaContas.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cadastrar uma conta")]
+        [NUnit.Framework.DescriptionAttribute("Pagar uma conta")]
         [NUnit.Framework.CategoryAttribute("SemLogin")]
-        public virtual void CadastrarUmaConta()
+        public virtual void PagarUmaConta()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cadastrar uma conta", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pagar uma conta", new string[] {
                         "SemLogin"});
 #line 4
 this.ScenarioSetup(scenarioInfo);
@@ -84,29 +84,19 @@ testRunner.And("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlo
 #line 9
 testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line 10
-testRunner.And("clico na opcao \"MenuContas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+testRunner.And("clico na opcao \"MenuPendencias\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 11
-testRunner.And("clico na opcao \"CadastrarConta\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+testRunner.And("clico na opcao \"EmAberto\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 12
-testRunner.Then("clico na opcao \"Credito\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+testRunner.And("clico na opcao \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 13
-testRunner.And("preencho o campo \"CredorOuDevedor\" com o valor \"Cliente\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+testRunner.And("clico na opcao \"Confirmar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 14
-testRunner.And("preencho o campo \"Descricao\" com o valor \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 15
-testRunner.And("preencho o campo \"ValorConta\" com o valor \"150,00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 16
-testRunner.And("preencho o campo \"DataVencimento\" com o valor \"30/10/2014\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 17
-testRunner.And("clico na opcao \"ValorConta\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 18
-testRunner.When("clico na opcao \"btn_salvar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
-#line 19
 testRunner.Then("devo ver o elemento \"table\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
-#line 20
-testRunner.And("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 21
-testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 15
+testRunner.And("clico na opcao \"btn_modal\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 16
+testRunner.And("clico na opcao \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
             this.ScenarioCleanup();
         }
