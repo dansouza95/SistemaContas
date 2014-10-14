@@ -98,7 +98,7 @@ testRunner.Then("devo ver o elemento \"table\"", ((string)(null)), ((TechTalk.Sp
 #line 16
 testRunner.And("clico na opcao \"btn_modal\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 17
-testRunner.And("clico na opcao \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+testRunner.And("clico na opcao \"Quitar Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 18
 testRunner.And("clico na opcao \"btn_gravarParcela\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 19

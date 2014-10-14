@@ -118,11 +118,11 @@
                     $('#tbl_movimentacao').html(resultado);
                     if(d.Tipo == "Crédito"){
                         var link = "<a class=\"btn btn-primary\" id=\""+d.Conta.Descricao+"\" href=\"/Recebimentos/Parcela/"+d.Conta.Id+"\">Incluir parcela</a>"+
-                                   "<a class=\"btn btn-default\" id=\""+d.Conta.Descricao+"\" href=\"/Recebimentos/QuitarRecebimento/"+d.Conta.Id+"\">Quitar recebimento</a>";
+                                   "<a class=\"btn btn-default\" id=\"Quitar "+d.Conta.Descricao+"\" href=\"/Recebimentos/QuitarRecebimento/"+d.Conta.Id+"\">Quitar recebimento</a>";
                     }
                     else{
                         var link = "<a class=\"btn btn-default\" id=\""+d.Conta.Descricao+"\" href=\"/Pagamentos/Parcela/"+d.Conta.Id+"\">Incluir parcela</a>"+
-                                   "<a class=\"btn btn-primary\" id=\""+d.Conta.Descricao+"\" href=\"/Pagamentos/QuitarPagamento/"+d.Conta.Id+"\">Quitar pagamento</a>";
+                                   "<a class=\"btn btn-primary\" id=\"Quitar "+d.Conta.Descricao+"\" href=\"/Pagamentos/QuitarPagamento/"+d.Conta.Id+"\">Quitar pagamento</a>";
                     }
                     $('.modal-footer').html(link);
                 }
