@@ -2,6 +2,7 @@
 using Ninject;
 using SistemaContas.Core.Dominio.Dados.Contrato;
 using SistemaContas.Core.Dominio.Entidades;
+using SistemaContas.Web.Utilitarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;

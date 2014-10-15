@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SistemaContas.Web
+namespace SistemaContas.Web.Utilitarios
 {
     public class GeraPDF
     {
