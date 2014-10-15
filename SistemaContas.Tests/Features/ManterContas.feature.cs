@@ -110,6 +110,139 @@ testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cadastrar uma conta para edição")]
+        [NUnit.Framework.CategoryAttribute("SemLogin")]
+        public virtual void CadastrarUmaContaParaEdicao()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cadastrar uma conta para edição", new string[] {
+                        "SemLogin"});
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+testRunner.Given("que estou na página \"http://localhost:10941/Acesso/Login\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+#line 26
+testRunner.And("preencho o campo \"Usuario\" com o valor \"dansouza.95\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 27
+testRunner.And("preencho o campo \"Senha\" com o valor \"01020300\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 28
+testRunner.And("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 29
+testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 30
+testRunner.And("clico na opcao \"MenuContas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 31
+testRunner.And("clico na opcao \"CadastrarConta\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 32
+testRunner.Then("clico na opcao \"Debito\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 33
+testRunner.And("preencho o campo \"CredorOuDevedor\" com o valor \"Eletropaulo\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 34
+testRunner.And("preencho o campo \"Descricao\" com o valor \"Luz\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 35
+testRunner.And("preencho o campo \"ValorConta\" com o valor \"250,00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 36
+testRunner.And("preencho o campo \"DataVencimento\" com o valor \"28/10/2014\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 37
+testRunner.And("clico na opcao \"ValorConta\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 38
+testRunner.When("clico na opcao \"btn_salvar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 39
+testRunner.Then("devo ver o elemento \"table\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 40
+testRunner.And("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 41
+testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Editar uma conta")]
+        [NUnit.Framework.CategoryAttribute("SemLogin")]
+        public virtual void EditarUmaConta()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editar uma conta", new string[] {
+                        "SemLogin"});
+#line 44
+this.ScenarioSetup(scenarioInfo);
+#line 45
+testRunner.Given("que estou na página \"http://localhost:10941/Acesso/Login\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+#line 46
+testRunner.And("preencho o campo \"Usuario\" com o valor \"dansouza.95\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 47
+testRunner.And("preencho o campo \"Senha\" com o valor \"01020300\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 48
+testRunner.And("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 49
+testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 50
+testRunner.And("clico na opcao \"MenuPendencias\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 51
+testRunner.And("clico na opcao \"EmAberto\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 52
+testRunner.And("clico na opcao \"Editar_Luz\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 53
+testRunner.Then("clico na opcao \"Debito\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 54
+testRunner.And("preencho o campo \"CredorOuDevedor\" com o valor \"Sabesp\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 55
+testRunner.And("preencho o campo \"Descricao\" com o valor \"Água\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 56
+testRunner.And("preencho o campo \"ValorConta\" com o valor \"350,00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 57
+testRunner.And("preencho o campo \"DataVencimento\" com o valor \"28/10/2014\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 58
+testRunner.And("clico na opcao \"ValorConta\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 59
+testRunner.When("clico na opcao \"Salvar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 60
+testRunner.Then("devo ver o elemento \"table\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 61
+testRunner.And("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 62
+testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Excluir uma conta")]
+        [NUnit.Framework.CategoryAttribute("SemLogin")]
+        public virtual void ExcluirUmaConta()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Excluir uma conta", new string[] {
+                        "SemLogin"});
+#line 65
+this.ScenarioSetup(scenarioInfo);
+#line 66
+testRunner.Given("que estou na página \"http://localhost:10941/Acesso/Login\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+#line 67
+testRunner.And("preencho o campo \"Usuario\" com o valor \"dansouza.95\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 68
+testRunner.And("preencho o campo \"Senha\" com o valor \"01020300\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 69
+testRunner.And("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 70
+testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 71
+testRunner.And("clico na opcao \"MenuPendencias\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 72
+testRunner.And("clico na opcao \"EmAberto\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 73
+testRunner.And("clico na opcao \"Excluir_Água\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 74
+testRunner.And("clico na opcao \"btn_Excluir\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 75
+testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 76
+testRunner.And("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 77
+testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

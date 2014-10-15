@@ -10,12 +10,12 @@ namespace SistemaContas.Web.Utilitarios
 {
     public class GeraPDF
     {
-        public static ViewAsPdf ConvertePdf(string nomeView, Cliente cliente)
+        public static ViewAsPdf ConvertePdf(string nomeView, Cliente cliente, string tipoExtrato)
         {
             var pdf = new ViewAsPdf
             {
                 ViewName = nomeView,
-                FileName = nomeView + "_" + cliente.Nome.Replace(" ", "_") + ".pdf",
+                FileName = nomeView + "_" + cliente.Nome.Replace(" ", "_") + "_" + tipoExtrato.Replace(" ","-")+ ".pdf",
                 PageSize = Size.A4,
                 IsGrayScale = true,
                 PageMargins = new Margins { Bottom = 5, Left = 5, Right = 5, Top = 5 },

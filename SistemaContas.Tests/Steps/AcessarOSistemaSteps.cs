@@ -45,6 +45,13 @@ namespace SistemaContas.Teste.Steps
             Browser.PreencherCampo(campo, valor);
         }
 
+        [Then(@"preencho o a opcao ""(.*)"" com o valor ""(.*)""")]
+        public void EntaoPreenchoOAOpcaoComOValor(string campo, string valor)
+        {
+            Browser.PreencherOpcao(campo, valor);
+            
+        }
+
         [Then(@"devo ver o elemento ""(.*)""")]
         public void EntaoDevoVerAPaginaInicial(string elemento)
         {

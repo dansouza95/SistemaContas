@@ -54,12 +54,18 @@ namespace SistemaContas.Initializer
 
         internal static void PreencherCampo(string campo, string valor)
         {
+            driver.FindElement(By.Id(campo)).Clear();
             driver.FindElement(By.Id(campo)).SendKeys(valor);
         }
 
         internal static void PaginaInicial(string elemento)
         {
             Assert.IsTrue(driver.FindElement(By.TagName(elemento)).TagName.ToLower().Contains(elemento));
+        }
+
+        internal static void PreencherOpcao(string campo, string valor)
+        {
+            driver.FindElement(By.Id(campo)).SendKeys(valor);
         }
     }
 }

@@ -137,11 +137,11 @@ namespace SistemaContas.Web.Controllers
                         ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
                         ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
                         ViewBag.Total = lista.Sum(x => x.ValorTransacao);
-                        
+                        ViewBag.Informacao = "(Completo)";
                         break;
                 }
                 ViewBag.Pdf = true;
-                return GeraPDF.ConvertePdf("Extrato", cliente);
+                return GeraPDF.ConvertePdf("Extrato", cliente, ViewBag.Informacao);
             }
             else
             {

@@ -76,10 +76,10 @@
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink(" ", "EditarConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-pencil" })
+                                @Html.ActionLink(" ", "EditarConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-pencil", @id = "Editar_"+@item.Descricao })
                             </td>
                             <td>
-                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
+                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash", @id = "Excluir_"+@item.Descricao })
                             </td>
                         </tr>
                 }

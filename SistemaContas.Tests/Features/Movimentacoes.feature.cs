@@ -90,7 +90,7 @@ testRunner.And("clico na opcao \"EmAberto\"", ((string)(null)), ((TechTalk.SpecF
 #line 12
 testRunner.And("clico na opcao \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 13
-testRunner.And("preencho o campo \"SelecionarNumeroParcelas\" com o valor \"5\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+testRunner.And("preencho o a opcao \"SelecionarNumeroParcelas\" com o valor \"5\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 14
 testRunner.And("clico na opcao \"Confirmar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 15
@@ -103,6 +103,10 @@ testRunner.And("clico na opcao \"Quitar Prestação de serviços\"", ((string)(n
 testRunner.And("clico na opcao \"btn_gravarParcela\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line 19
 testRunner.And("devo ver o elemento \"table\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 20
+testRunner.And("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 21
+testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
             this.ScenarioCleanup();
         }
