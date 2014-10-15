@@ -1,0 +1,58 @@
+﻿@model Conta
+@{
+    ViewBag.Title = "Deletar conta";
+}
+
+<h2>ATENÇÃO: Deseja excluir a conta abaixo?</h2>
+
+@using (Html.BeginForm("ExcluirConta", "Contas", FormMethod.Post, new { @id = "frm_deletarConta" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td><strong>Descrição da conta:</strong> </td>
+                    <td>@Model.Descricao</td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (Model.TipoOperacao == "Crédito")
+                        {
+                            <strong>Devedor:</strong>
+                        }
+                        else
+                        {
+                            <strong>Credor:</strong>
+                        }
+                    </td>
+                    <td>@Model.CredorOuDevedor</td>
+                </tr>
+                <tr>
+                    <td><strong>Valor:</strong> </td>
+                    <td>@Model.ValorConta.ToString("R$ #,#,0.00")</td>
+                </tr>
+                <tr>
+                    <td><strong>Descrição da conta:</strong> </td>
+                    <td>@Model.DataVencimento.ToString("dd/MM/yyyy")</td>
+                </tr>
+                <tr>
+                    <td><strong>Status:</strong> </td>
+                    <td>@Model.StatusConta</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Confirmar" class="btn btn-default" id="btn_Excluir"/>
+            </div>
+        </div>
+        @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+    </div>
+}

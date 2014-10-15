@@ -1,0 +1,15 @@
+﻿.espaco-rodape {
+        margin-bottom: 200px;
+    }
+
+    li {
+        height: 20px;
+    }
+
+    .btn-default {
+        width: 200px !important;
+    }
+
+    .dropdown-menu {
+        width: 200px !important;
+    }

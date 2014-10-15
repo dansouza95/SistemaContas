@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="SistemaContas.Tests.Features.AcessarOSistemaFeature.RealizarLoginNoSistema" /><Add Test="SistemaContas.Tests.Features.ManterContaFeature.CadastrarUmaConta" /><Add Test="SistemaContas.Tests.Features.PagamentoERecebimentoDeContasFeature.PagarUmaConta" /></Playlist>

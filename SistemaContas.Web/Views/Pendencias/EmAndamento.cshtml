@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Contas em andamento";
+}
+
+<style>
+    .form-horizontal {
+        height: 600px;
+    }
+    #tbl_movimentacao{
+        width:70%;
+    }
+</style>
+
+<h2>Contas em andamento</h2>
+<div class="form-horizontal">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Credor/Devedor
+                </th>
+                <th>
+                    Descricao
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Data de vencimento
+                </th>
+                <th>
+                    Tipo
+                </th>
+                @if (ViewBag.Lista != null && ViewBag.Lista.Count > 0) { 
+                <th></th>
+                <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Lista != null)
+            {
+                var classe = "";
+                foreach (var item in ViewBag.Lista)
+                {
+                    if (item.Conta.DataVencimento.Date < DateTime.Now.Date)
+                    {
+                        classe = "danger";
+                    }
+                        <tr class="@classe">
+                            <td>
+                                @item.Conta.CredorOuDevedor
+                            </td>
+                            <td>
+                                @item.Conta.Descricao
+                            </td>
+                            <td>
+                                @item.Conta.ValorConta.ToString("R$ #,#,0.00")
+                            </td>
+                            <td>
+                                @item.Conta.DataVencimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.Conta.TipoOperacao
+                            </td>
+                            <td>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#modalMovimentacao" id="btn_modal" value="@item.Id" onclick="AtualizaModal(this.value)">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Conta.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
+                            </td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+</div>
+<div class="modal in" id="modalMovimentacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="modalMovimentacaoLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <table id="tbl_movimentacao" class="panel panel-default table-bordered">
+                    
+                </table>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        var dados;
+        function AtualizaModal(id){
+            dados.forEach(function(d){
+                if(d.Id == id){
+                    $('#modalMovimentacaoLabel').html("<strong>Conta:</strong> "+d.Conta.Descricao);
+                    var valor = "R$ " + d.Valor.toFixed(2).toString().replace(".",",");
+                    var valorParcela = "R$ " + d.ValorParcela.toFixed(2).toString().replace(".",",");
+
+                    var resultado = "<tr><td><strong>Tipo de operação: </strong></td><td>"+d.Tipo+"</td></tr>"+
+                                    "<tr><td><strong>Valor: </strong></td><td>"+valor+"</td></tr>"+
+                                    "<tr><td><strong>Valor da parcela: </strong></td><td>"+valorParcela+"</td></tr>"+
+                                    "<tr><td><strong>Total de parcelas: </strong></td><td>"+d.NumeroParcelas+"</td></tr>"+
+                                    "<tr><td><strong>Parcelas restantes: </strong></td><td>"+d.ParcelasRestantes+"</td></tr>";
+                    $('#tbl_movimentacao').html(resultado);
+                    if(d.Tipo == "Crédito"){
+                        var link = "<a class=\"btn btn-primary\" id=\""+d.Conta.Descricao+"\" href=\"/Recebimentos/Parcela/"+d.Conta.Id+"\">Incluir parcela</a>"+
+                                   "<a class=\"btn btn-default\" id=\"Quitar "+d.Conta.Descricao+"\" href=\"/Recebimentos/QuitarRecebimento/"+d.Conta.Id+"\">Quitar recebimento</a>";
+                    }
+                    else{
+                        var link = "<a class=\"btn btn-default\" id=\""+d.Conta.Descricao+"\" href=\"/Pagamentos/Parcela/"+d.Conta.Id+"\">Incluir parcela</a>"+
+                                   "<a class=\"btn btn-primary\" id=\"Quitar "+d.Conta.Descricao+"\" href=\"/Pagamentos/QuitarPagamento/"+d.Conta.Id+"\">Quitar pagamento</a>";
+                    }
+                    $('.modal-footer').html(link);
+                }
+            });
+        };
+        
+        $(function(){
+            dados = @Html.Raw(ViewBag.Lista2);
+        });
+    </script>
+}

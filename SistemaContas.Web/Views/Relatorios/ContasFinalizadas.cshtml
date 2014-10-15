@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Contas Finalizadas";
+}
+
+        <style>
+            .form-group{margin-top:100px !important;}body{margin-left:50px;}table{margin-top:50px !important;width:90% !important;}.total-extrato{width:100%;}th{width:16.6%;}td{width:16.6%;}.div-extratos{margin-bottom:65px;margin-top:65px;}</style>
+    
+<h3>Contas finalizadas</h3>
+<hr/>
+
+    
+    <table class="table table-bordered table-striped table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    Credor/Devedor
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Data de vencimento
+                </th>
+                <th>
+                    Data de fechamento
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Contas != null)
+            {
+                var classe = "";
+                foreach (var item in ViewBag.Contas)
+                {
+                    if (item.DataVencimento.Date < item.UltimaAtualizacao.Date)
+                    {
+                        classe = "danger";
+                    }
+                    else
+                    {
+                        classe = "";
+                    }
+                    <tr class="@classe">
+                        <td>
+                            @item.CredorOuDevedor
+                        </td>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            @item.ValorConta.ToString("R$ #,#,0.00")
+                        </td>
+                        <td>
+                            @item.TipoOperacao
+                        </td>
+                        <td>
+                            @item.DataVencimento.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.UltimaAtualizacao.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+        
+
+   <div class="form-group">
+           @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+    </div>

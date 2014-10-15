@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/Log.cshtml";
+}
+@model Cliente
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    
+</head>
+<body>
+    <div class="container">
+        <table class="table-bordered table-striped table-responsive">
+            <tr>
+                <td>
+                    @using (Html.BeginForm("Index", "Relatorios", FormMethod.Post, new { @class = "form-signin", @id = "frm_login" }))
+                    {
+                        <h2 class="form-signin-heading">Por favor, autentique-se.</h2>
+                        @Html.TextBoxFor(x => x.Usuario, new { @class = "col-md-10 form-control", @id = "Usuario", @placeholder = "Digite o nome de usuário", @required = "true", @autofocus = "true", @maxlength = "30", @pattern = ".{8,30}", @title = "O usuário precisa conter ao menos 8 letras ou números." })
+                        @Html.PasswordFor(x => x.Senha, new { @class = "col-md-10 form-control", @id = "Senha", @placeholder = "Digite a Senha", @required = "true", @autofocus = "true", @maxlength = "20", @pattern = ".{8,20}", @title = "A senha precisa conter ao menos 8 dígitos." })
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="Entrar" name="Entrar" value="Login">Login</button>
+                        @Html.ActionLink("Não possuo cadastro", "RegistroUsuario",new { @controller = "Acesso" }, new { @id = "link_registrarUsuario" })
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    @section Scripts{
+        <script>
+            var user = $('#Usuario');
+            var pass = $('#Senha');
+
+            $('#Entrar').click(function () {
+                if (validarCampos()) {
+                    var cliente = {
+                        Usuario: user.val(),
+                        Senha: pass.val()
+                    };
+                    $.ajax({
+                        url: '@Html.Raw(Url.Action("Logon","Acesso"))',
+                        dataType: 'json',
+                        type: 'post',
+                        data: { dados: JSON.stringify(cliente) }
+                    })
+                    .success(function (data) {
+                        if (data) {
+                            $('#frm_login').submit();
+                        }
+                        else {
+                            
+                            alert('Usuário ou senha inválidos!');
+                            
+                        }
+                    })
+                    .error(function () {
+                        alert('Falha ao conectar ao servidor!');
+                    })
+                    ;
+                }
+                else {
+                    alert('Preencha os campos corretamente!');
+                }
+            });
+            function validarCampos() {
+                if (user.val().replace(" ", "") == "" || pass.val().replace(" ", "") == "")
+                    return false;
+                else
+                    return true
+            }
+
+        </script>
+    }
+
+</body>
+</html>

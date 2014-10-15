@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Contas sem tratativa";
+}
+
+<style>
+    .form-horizontal {
+        height: 600px;
+    }
+</style>
+
+<h2>Contas pendentes</h2>
+<div class="form-horizontal">
+
+    <table class="table table-bordered" id="TabelaPendenciasEmAberto">
+        <thead>
+            <tr>
+                <th>
+                    Credor/Devedor
+                </th>
+                <th>
+                    Descricao
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Data de vencimento
+                </th>
+                <th>Tipo de Operação</th>
+                @if (ViewBag.Lista != null && ViewBag.Lista.Count > 0) 
+                { 
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Lista != null)
+            {
+                var classe = "";
+                foreach (var item in ViewBag.Lista)
+                {
+                    if (item.DataVencimento.Date < DateTime.Now.Date)
+                    {
+                        classe = "danger";
+                    }
+                    else
+                    {
+                            classe = "";
+                    }
+                        <tr class="@classe">
+                            <td>
+                                @item.CredorOuDevedor
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @item.ValorConta.ToString("R$ #,#,0.00")
+                            </td>
+                            <td>
+                                @item.DataVencimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.TipoOperacao
+                            </td>
+                            <td>
+                                @if (item.TipoOperacao == "Crédito")
+                                {
+                                    @Html.ActionLink("Iniciar tratativa (recebimento)", "CadastrarRecebimento", new { @controller = "Recebimentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Descricao })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Iniciar tratativa (pagamento)", "CadastrarPagamento", new { @controller = "Pagamentos", @id = @item.Id }, new { @class = "btn btn-primary", @id = @item.Descricao })
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "EditarConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-pencil", @id = "Editar_"+@item.Descricao })
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash", @id = "Excluir_"+@item.Descricao })
+                            </td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+</div>

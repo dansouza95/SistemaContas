@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "Extrato";
+    if (ViewBag.Pdf != null) { 
+    Layout = null;
+    }
+}
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <style>
+        .form-group{margin-top:20px !important;}body{margin-left:50px;}.form-horizontal{margin-top:30px;width:90%;margin-bottom:20px;}.total-extrato{width:100%;}th{width:20% !important;}td{width:20%}h2{margin-left:20%;}button{margin-top:50px;}.div-extratos{margin-bottom:40px;margin-top:40px;}h4{font-size:20px;}button{width:100px !important;}.total{width:80% !important;}.total-valor{width:20% !important;}.cabecalho{margin-top:5px !important;}.link{margin-bottom:0px;}
+        </style>
+        
+    @if (ViewBag.Informacao != null) { 
+    <h2>Extrato @ViewBag.Informacao</h2>
+    }
+    else
+    {
+        <h2>Extrato Completo</h2>
+    }
+    
+    @using (Html.BeginForm("Extrato", "Relatorios", FormMethod.Post, new { @id = "frm_extrato", @class = "form-horizontal" }))
+    {
+        <hr />
+        <div class="div-extratos">
+            <h4>Créditos</h4>
+            <div class="panel panel-default">
+                <table class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                Devedor
+                            </th>
+                            <th>
+                                Descrição
+                            </th>
+                            <th>
+                                Data
+                            </th>
+                            <th>
+                                Hora
+                            </th>
+                            <th>
+                                Valor
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Historico != null)
+                        {
+                            foreach (var item in ViewBag.Historico)
+                            {
+                                if (item.TipoTransacao == "Crédito")
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Conta.CredorOuDevedor
+                                        </td>
+                                        <td>
+                                            @item.Conta.Descricao
+                                        </td>
+
+                                        <td>
+                                            @item.DataTransacao.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @item.DataTransacao.ToString("HH:mm")
+                                        </td>
+                                        <td>
+                                            @item.ValorTransacao.ToString("R$ #,#,0.00")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr />
+        <div class="div-extratos">
+            <h4>Débitos</h4>
+            <div class="panel panel-default">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Credor
+                            </th>
+                            <th>
+                                Descrição
+                            </th>
+                            <th>
+                                Data
+                            </th>
+                            <th>
+                                Hora
+                            </th>
+                            <th>
+                                Valor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Historico != null)
+                        {
+                            foreach (var item in ViewBag.Historico)
+                            {
+                                if (item.TipoTransacao == "Débito")
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Conta.CredorOuDevedor
+                                        </td>
+                                        <td>
+                                            @item.Conta.Descricao
+                                        </td>
+
+                                        <td>
+                                            @item.DataTransacao.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @item.DataTransacao.ToString("HH:mm")
+                                        </td>
+                                        <td>
+                                            @item.ValorTransacao.ToString("R$ #,#,0.00")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr />
+        <div class="total-extrato">
+            <div class="panel panel-default">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="total">
+                                <strong>SUBTOTAL CRÉDITO:</strong>
+                            </td>
+                            <td class="total-valor">
+                                @ViewBag.OperacoesCredito.ToString("R$ #,#,0.00")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="total">
+                                <strong>SUBTOTAL DÉBITO:</strong>
+                            </td>
+                            <td class="total-valor">
+                                @ViewBag.OperacoesDebito.ToString("R$ #,#,0.00")
+                            </td>
+                        </tr>
+                        @{ var classe = "";
+                           
+                           }
+                        @if (ViewBag.Total < 0) {
+                            classe = "danger";
+                           } 
+                        <tr class="@classe">
+                            <td class="total">
+                                <strong>TOTAL:</strong>
+                            </td>
+                            <td class="total-valor">
+                                @ViewBag.Total.ToString("R$ #,#,0.00")
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        if (ViewBag.Pdf == null)
+        {
+            <div class="form-group">
+                <button type="submit" id="btn_gerarExtrato" class="btn btn-default tool" data-toggle="tooltip" data-placement="right" title="Gerar documento PDF">
+                    <span class=" glyphicon glyphicon-export">
+                    </span>
+                </button>
+            </div>
+        <hr />
+        <div class="link">
+            
+                @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+            
+        </div>
+            }
+    }
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('.tool').tooltip();
+            });
+            $('#btn_gerarExtrato').click(function () {
+                $('#frm_extrato').submit();
+            });
+        </script>
+    }
+    
+    @if (ViewBag.Pdf != null) 
+    { 
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    }
