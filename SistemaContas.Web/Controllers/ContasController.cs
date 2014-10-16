@@ -29,12 +29,12 @@ namespace SistemaContas.Web.Controllers
 
 
 
-        [Authorize(Roles="Usuario, Administrador")]
+        [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult CadastrarConta()
         {
             return View();
         }
-        [Authorize(Roles="Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CadastrarConta(Conta conta)
         {
             if (Session["UsuarioLogado"] != null)
@@ -52,12 +52,12 @@ namespace SistemaContas.Web.Controllers
             return RedirectToAction("SemTratativa", "Pendencias");
         }
 
-        [Authorize(Roles="Usuario, Administrador")]
-        public ActionResult EditarConta(int id=0)
+        [Authorize(Roles = "Usuario, Administrador")]
+        public ActionResult EditarConta(int id = 0)
         {
             if (id == 0)
             {
-                return RedirectToAction("Index","Relatorios");
+                return RedirectToAction("Index", "Relatorios");
             }
             else
             {
@@ -80,7 +80,7 @@ namespace SistemaContas.Web.Controllers
                 Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
                 conta.Cliente = (Cliente)Session["UsuarioLogado"];
             }
-            
+
             conta.StatusConta = "Em aberto";
             conta.UltimaAtualizacao = DateTime.Now;
             repositoryConta.EditarConta(conta);
@@ -116,7 +116,7 @@ namespace SistemaContas.Web.Controllers
             var movimentacao = repositoryMovimentacao.PegarMovimentacao(conta.Id);
             if (listaTransacoes.Count > 0) { repositoryTransacao.ExcluirTransacoes(listaTransacoes); }
             if (movimentacao != null) { repositoryMovimentacao.ExcluirMovimentacao(movimentacao); }
-            
+
             repositoryConta.DeletarConta(conta);
             return RedirectToAction("Index", "Relatorios");
         }

@@ -41,7 +41,7 @@ namespace SistemaContas.Web.Controllers
             JavaScriptSerializer js = new JavaScriptSerializer();
             string lista2 = js.Serialize(lista);
             ViewBag.Lista = lista;
-            
+
             ViewBag.Lista2 = lista2;
             return View();
         }

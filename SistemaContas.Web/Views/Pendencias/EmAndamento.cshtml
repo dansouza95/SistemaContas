@@ -6,8 +6,9 @@
     .form-horizontal {
         height: 600px;
     }
-    #tbl_movimentacao{
-        width:70%;
+
+    #tbl_movimentacao {
+        width: 70%;
     }
 </style>
 
@@ -32,9 +33,10 @@
                 <th>
                     Tipo
                 </th>
-                @if (ViewBag.Lista != null && ViewBag.Lista.Count > 0) { 
-                <th></th>
-                <th></th>
+                @if (ViewBag.Lista != null && ViewBag.Lista.Count > 0)
+                {
+                    <th></th>
+                    <th></th>
                 }
             </tr>
         </thead>
@@ -48,31 +50,31 @@
                     {
                         classe = "danger";
                     }
-                        <tr class="@classe">
-                            <td>
-                                @item.Conta.CredorOuDevedor
-                            </td>
-                            <td>
-                                @item.Conta.Descricao
-                            </td>
-                            <td>
-                                @item.Conta.ValorConta.ToString("R$ #,#,0.00")
-                            </td>
-                            <td>
-                                @item.Conta.DataVencimento.ToString("dd/MM/yyyy")
-                            </td>
-                            <td>
-                                @item.Conta.TipoOperacao
-                            </td>
-                            <td>
-                                <button class="btn btn-default" data-toggle="modal" data-target="#modalMovimentacao" id="btn_modal" value="@item.Id" onclick="AtualizaModal(this.value)">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </td>
-                            <td>
-                                @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Conta.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
-                            </td>
-                        </tr>
+                    <tr class="@classe">
+                        <td>
+                            @item.Conta.CredorOuDevedor
+                        </td>
+                        <td>
+                            @item.Conta.Descricao
+                        </td>
+                        <td>
+                            @item.Conta.ValorConta.ToString("R$ #,#,0.00")
+                        </td>
+                        <td>
+                            @item.Conta.DataVencimento.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.Conta.TipoOperacao
+                        </td>
+                        <td>
+                            <button class="btn btn-default" data-toggle="modal" data-target="#modalMovimentacao" id="btn_modal" value="@item.Id" onclick="AtualizaModal(this.value)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </td>
+                        <td>
+                            @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Conta.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
+                        </td>
+                    </tr>
                 }
             }
         </tbody>
@@ -87,12 +89,10 @@
                 <h4 class="modal-title" id="modalMovimentacaoLabel"></h4>
             </div>
             <div class="modal-body">
-                <table id="tbl_movimentacao" class="panel panel-default table-bordered">
-                    
-                </table>
+                <table id="tbl_movimentacao" class="panel panel-default table-bordered"></table>
             </div>
             <div class="modal-footer">
-                
+
             </div>
         </div>
     </div>
@@ -128,7 +128,7 @@
                 }
             });
         };
-        
+
         $(function(){
             dados = @Html.Raw(ViewBag.Lista2);
         });

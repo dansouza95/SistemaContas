@@ -65,7 +65,7 @@ namespace SistemaContas.Web.Controllers
                 Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
                 recebimento.Cliente = Session["UsuarioLogado"] as Cliente;
             }
-            
+
             recebimento.Valor = recebimento.Conta.ValorConta;
             recebimento.ValorParcela = recebimento.Valor / recebimento.NumeroParcelas;
             recebimento.ParcelasRestantes = recebimento.NumeroParcelas;
@@ -114,7 +114,7 @@ namespace SistemaContas.Web.Controllers
                     Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
                     recebimento.Cliente = (Cliente)Session["UsuarioLogado"];
                 }
-                
+
                 recebimento.ValorRestante = recebimento.ValorRestante - recebimento.ValorParcela;
                 recebimento.ParcelasRestantes -= 1;
                 recebimento.Status = "Em andamento";

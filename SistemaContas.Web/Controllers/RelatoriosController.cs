@@ -59,18 +59,18 @@ namespace SistemaContas.Web.Controllers
                         break;
 
                     default: int idCliente = Convert.ToInt32(User.Identity.Name);
-                             var lista = repositoryTransacao.PegarTransacoes(idCliente);
-                             foreach (var item in lista)
-                             {
-                                 item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
-                                 item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
-                             }
-                             
-                             ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
-                             ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
+                        var lista = repositoryTransacao.PegarTransacoes(idCliente);
+                        foreach (var item in lista)
+                        {
+                            item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
+                            item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
+                        }
 
-                             ViewBag.Historico = lista;
-                             ViewBag.Total = ViewBag.OperacoesCredito - ViewBag.OperacoesDebito;
+                        ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
+                        ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
+
+                        ViewBag.Historico = lista;
+                        ViewBag.Total = ViewBag.OperacoesCredito - ViewBag.OperacoesDebito;
                         break;
                 }
                 return View();
@@ -84,7 +84,7 @@ namespace SistemaContas.Web.Controllers
 
         public void getExtrato(int numDias)
         {
-            var data = DateTime.Now.AddDays(numDias *-1);
+            var data = DateTime.Now.AddDays(numDias * -1);
             var lista = repositoryTransacao.PegarTransacoes(Convert.ToInt32(User.Identity.Name)).Where(x => x.DataTransacao >= data);
 
             foreach (var item in lista)
@@ -92,13 +92,13 @@ namespace SistemaContas.Web.Controllers
                 item.Conta = repositoryConta.PegarContaPorId(item.Conta.Id);
                 item.Movimentacao = repositoryMovimentacao.PegarMovimentacao(item.Conta.Id);
             }
-            
+
             ViewBag.OperacoesCredito = lista.Where(x => x.TipoTransacao == "Crédito").Sum(x => x.ValorTransacao);
             ViewBag.OperacoesDebito = lista.Where(x => x.TipoTransacao == "Débito").Sum(x => x.ValorTransacao);
-            
+
             ViewBag.Historico = lista;
             ViewBag.Total = ViewBag.OperacoesCredito - ViewBag.OperacoesDebito;
-            ViewBag.Informacao = "(Últimos "+ numDias.ToString() +" dias)";
+            ViewBag.Informacao = "(Últimos " + numDias.ToString() + " dias)";
         }
 
 

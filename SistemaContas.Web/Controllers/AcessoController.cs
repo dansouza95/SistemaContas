@@ -53,7 +53,7 @@ namespace SistemaContas.Web.Controllers
                 cliente = repository.PegarClientePorId(id);
                 AutorizarLogin(cliente.Id, cliente.Permissao);
                 Session.Add("UsuarioLogado", cliente);
-                return Json(true,JsonRequestBehavior.AllowGet);
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             else
             {

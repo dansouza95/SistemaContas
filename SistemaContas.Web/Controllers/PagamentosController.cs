@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace SistemaContas.Web.Controllers
 {
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class PagamentosController : Controller
     {
         [Inject]
@@ -27,10 +27,10 @@ namespace SistemaContas.Web.Controllers
         [Inject]
         public ITransacaoRepository repositoryTransacao { get; set; }
 
-        
+
 
         [Authorize(Roles = "Usuario, Administrador")]
-        public ActionResult CadastrarPagamento(int id=0)
+        public ActionResult CadastrarPagamento(int id = 0)
         {
             var conta = repositoryConta.PegarContaPorId(id);
             if ((conta.StatusConta == "Em andamento" || conta.StatusConta == "Finalizada") && conta != null)
@@ -82,9 +82,9 @@ namespace SistemaContas.Web.Controllers
         [Authorize(Roles = "Usuario, Administrador")]
         public ActionResult Parcela(int id = 0)
         {
-            
+
             var conta = repositoryConta.PegarContaPorId(id);
-            if (id != 0 && conta != null && conta.StatusConta!="Finalizada" && conta.StatusConta!="Em aberto")
+            if (id != 0 && conta != null && conta.StatusConta != "Finalizada" && conta.StatusConta != "Em aberto")
             {
                 var pagamento = repositoryPagamento.PegarMovimentacao(id);
                 pagamento.Conta = conta;
@@ -96,8 +96,8 @@ namespace SistemaContas.Web.Controllers
             }
         }
 
-        [Authorize(Roles="Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Parcela(Movimentacao pagamento, int id=0)
+        [Authorize(Roles = "Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Parcela(Movimentacao pagamento, int id = 0)
         {
             var conta = repositoryConta.PegarContaPorId(id);
             if (id != 0 && conta != null && conta.StatusConta != "Finalizada" && conta.StatusConta != "Em aberto")
@@ -213,6 +213,6 @@ namespace SistemaContas.Web.Controllers
                 return RedirectToAction("Index", "Relatorios");
             }
         }
-        
+
     }
 }
