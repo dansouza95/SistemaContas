@@ -3,7 +3,7 @@
     ViewBag.Title = "Novo Pagamento";
 }
 
-<h2>@ViewBag.Conta.Descricao</h2>
+<h2>Conta: @ViewBag.Conta.Descricao</h2>
 
 @using (Html.BeginForm("CadastrarPagamento", "Pagamentos", FormMethod.Post, new { @id = "frm_cadastroPagamentos" }))
 {
@@ -27,7 +27,6 @@
                 <td>
                     <div class="col-md-10">
                         @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas, "Selecionar", new { @id = "SelecionarNumeroParcelas", @class = "col-md-10 form-control", @required = "true" })
-
                     </div>
                 </td>
             </tr>

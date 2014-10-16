@@ -110,7 +110,10 @@ namespace SistemaContas.Web.Controllers
         [AllowAnonymous]
         public ActionResult Validar(string usuario)
         {
-            return Json(repository.VerificarCadastro(usuario), JsonRequestBehavior.AllowGet);
+            Cliente cliente = new Cliente();
+            var js = new JavaScriptSerializer();
+            cliente = js.Deserialize<Cliente>(usuario);
+            return Json(repository.VerificarCadastro(cliente), JsonRequestBehavior.AllowGet);
         }
 
 

@@ -3,7 +3,7 @@
     ViewBag.Title = "Recebimento";
 }
 
-<h2>@ViewBag.Conta.Descricao</h2>
+<h2>Conta: @ViewBag.Conta.Descricao</h2>
 <hr />
 @using (Html.BeginForm("CadastrarRecebimento", "Recebimentos", FormMethod.Post, new { @id = "frm_cadastroRecebimentos" }))
 {

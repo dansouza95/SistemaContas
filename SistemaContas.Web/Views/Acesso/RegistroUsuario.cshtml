@@ -70,15 +70,20 @@
         $('#btn_confirmar').click(function () {
             if (ValidaCampos()) {
                 var user = $('#txtUsuario').val();
+                var email = $("#txtEmail").val();
+                var cliente = {
+                    Usuario: user,
+                    Email: email
+                };
                 $.ajax({
                     url: '@Html.Raw(Url.Action("Validar","Acesso"))',
                     dataType: 'json',
                     type: 'get',
-                    data: { usuario: user },
+                    data: { usuario: JSON.stringify(cliente) },
                 })
                 .success(function (data) {
-                    if (data == true) {
-                        alert('Nome de usuário já utilizado!');
+                    if (data) {
+                        alert('Nome de usuário ou email já utilizados!');
                     }
                     else {
                         $('#frm_registro').submit();
