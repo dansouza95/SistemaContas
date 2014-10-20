@@ -75,3 +75,18 @@ E clico na opcao "btn_Excluir"
 Então devo ver o elemento "canvas"
 E clico na opcao "Opcoes"
 E clico na opcao "Sair"
+
+@SemLogin
+Cenário: Z - Excluir uma conta finalizada
+Dado que estou na página "http://localhost:10941/Acesso/Login"
+E preencho o campo "Usuario" com o valor "dansouza.95"
+E preencho o campo "Senha" com o valor "01020300"
+E clico na opcao "Entrar"
+Então devo ver o elemento "canvas"
+E clico na opcao "MenuRelatorios"
+E clico na opcao "ContasFinalizadas"
+E clico na opcao "Prestação de serviços"
+E clico na opcao "btn_Excluir"
+Quando clico na opcao "Opcoes"
+E clico na opcao "Sair"
+Entao devo ver o elemento "input"

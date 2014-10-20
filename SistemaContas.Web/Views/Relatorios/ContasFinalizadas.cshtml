@@ -69,7 +69,7 @@
                             @item.UltimaAtualizacao.ToString("dd/MM/yyyy")
                         </td>
                         <td>
-                            @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash" })
+                            @Html.ActionLink(" ", "ExcluirConta", new { @id = @item.Id, @controller = "Contas" }, new { @class = "btn btn-default glyphicon glyphicon-trash", @id=@item.Descricao})
                         </td>
                     </tr>
                 }
