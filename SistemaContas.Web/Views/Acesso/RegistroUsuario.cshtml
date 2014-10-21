@@ -19,6 +19,7 @@
 @using (Html.BeginForm("RegistroUsuario", "Acesso", FormMethod.Post, new { id = "frm_registro" }))
 {
     <div class="form-group">
+        <div id="divErro"></div>
         <table>
             <tr>
                 <td>
@@ -59,6 +60,7 @@
                 </td>
             </tr>
         </table>
+        
     </div>
 }
 
@@ -68,6 +70,7 @@
             $('.tool').tooltip();
         });
         $('#btn_confirmar').click(function () {
+
             if (ValidaCampos()) {
                 var user = $('#txtUsuario').val();
                 var email = $("#txtEmail").val();
@@ -83,20 +86,29 @@
                 })
                 .success(function (data) {
                     if (data) {
-                        alert('Nome de usuário ou email já utilizados!');
+                        var aviso = "Email ou usuário já utilizados!";
+                        $('#divErro').html(gerarAlert("danger",aviso));
                     }
                     else {
                         $('#frm_registro').submit();
                     }
                 })
                 .error(function () {
-                    alert('Falha ao validar dados!');
+                    var aviso = "Falha na conexão!";
+                    $('#divErro').html(gerarAlert("warning",aviso));
                 });
             }
             else {
-                alert('Preencha os campos corretamente!');
+                var aviso = "Preencha os campos corretamente!";
+                $('#divErro').html(gerarAlert("danger",aviso));
             }
         });
+
+        function gerarAlert(classe,mensagem) {
+            var msg = "<div class=\"alert alert-" + classe + " col-md-10 alert-dismissible\" role=\"alert\" style=\"display:normal\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button><strong>Aviso: </strong> " + mensagem + "</div>";
+            return msg;
+        }
+
 
         function ValidaCampos() {
             if ($('#txtNome').val().replace(" ", "") == "" ||

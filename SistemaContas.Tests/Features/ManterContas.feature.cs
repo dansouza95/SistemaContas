@@ -243,43 +243,6 @@ testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Z - Excluir uma conta finalizada")]
-        [NUnit.Framework.CategoryAttribute("SemLogin")]
-        public virtual void Z_ExcluirUmaContaFinalizada()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Z - Excluir uma conta finalizada", new string[] {
-                        "SemLogin"});
-#line 80
-this.ScenarioSetup(scenarioInfo);
-#line 81
-testRunner.Given("que estou na página \"http://localhost:10941/Acesso/Login\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
-#line 82
-testRunner.And("preencho o campo \"Usuario\" com o valor \"dansouza.95\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 83
-testRunner.And("preencho o campo \"Senha\" com o valor \"01020300\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 84
-testRunner.And("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 85
-testRunner.Then("devo ver o elemento \"canvas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
-#line 86
-testRunner.And("clico na opcao \"MenuRelatorios\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 87
-testRunner.And("clico na opcao \"ContasFinalizadas\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 88
-testRunner.And("clico na opcao \"Prestação de serviços\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 89
-testRunner.And("clico na opcao \"btn_Excluir\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 90
-testRunner.When("clico na opcao \"Opcoes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
-#line 91
-testRunner.And("clico na opcao \"Sair\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line 92
-testRunner.Then("devo ver o elemento \"input\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Entao ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore
