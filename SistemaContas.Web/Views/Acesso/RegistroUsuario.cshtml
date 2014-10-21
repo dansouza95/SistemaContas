@@ -60,6 +60,8 @@
                 </td>
             </tr>
         </table>
+        
+
     </div>
 }
 
@@ -107,7 +109,7 @@
         });
 
         function gerarAlert(classe,mensagem) {
-            var msg = "<div class=\"alert alert-" + classe + " col-md-10 alert-dismissible\" role=\"alert\" style=\"display:normal\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>" + mensagem + "</div>";
+            var msg = "<div class=\"alert alert-" + classe + " col-md-10 alert-dismissible fade in\" role=\"alert\" style=\"display:normal\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button><strong>" + mensagem + "</strong></div>";
             return msg;
         }
 
