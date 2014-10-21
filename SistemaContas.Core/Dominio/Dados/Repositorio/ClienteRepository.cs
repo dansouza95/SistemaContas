@@ -67,21 +67,14 @@ namespace CadastroContas.Core.Dominio.Dados.Repositorio
         }
 
 
-<<<<<<< HEAD
+
         public bool VerificarCadastro(Cliente cliente)
         {
             using (ISession session = NHibernateConnection.OpenSession())
             {
                 var cli = session.Query<Cliente>().Where(x => x.Usuario.Equals(cliente.Usuario) || x.Email.Equals(cliente.Email)).SingleOrDefault();
                 if (cli != null)
-=======
-        public bool VerificarCadastro(string username)
-        {
-            using (ISession session = NHibernateConnection.OpenSession())
-            {
-                var cliente = session.Query<Cliente>().Where(x => x.Usuario.Equals(username)).SingleOrDefault();
-                if (cliente != null)
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
+
                 {
                     return true;
                 }

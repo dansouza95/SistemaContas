@@ -87,7 +87,6 @@
     <Compile Include="IISConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Acoes.cs" />
-    <Compile Include="Steps\AcessarOSistemaSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
