@@ -3,11 +3,16 @@
     ViewBag.Title = "Novo Pagamento";
 }
 
+<<<<<<< HEAD
 <h2>Conta: @ViewBag.Conta.Descricao</h2>
+=======
+<h2>@ViewBag.Conta.Descricao</h2>
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
 
 @using (Html.BeginForm("CadastrarPagamento", "Pagamentos", FormMethod.Post, new { @id = "frm_cadastroPagamentos" }))
 {
     @Html.AntiForgeryToken()
+<<<<<<< HEAD
 
     <style>
         table {
@@ -24,16 +29,36 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+=======
+    
+    <style>
+        table{width:400px}td{width:50%; text-align:left}
+    </style>
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
         <table>
             <tr>
                 <td>
                     <div class="form-group">
                         <label><strong>Número de parcelas:</strong></label>
+<<<<<<< HEAD
                     </div>
                 </td>
                 <td>
                     <div class="col-md-10">
                         @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas, "Selecionar", new { @id = "SelecionarNumeroParcelas", @class = "col-md-10 form-control", @required = "true" })
+=======
+                        </div>
+                </td>                
+                <td>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => x.NumeroParcelas, (SelectList)ViewBag.ListaParcelas, "Selecionar", new { @id = "SelecionarNumeroParcelas", @class = "col-md-10 form-control", @required = "true" })
+
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                     </div>
                 </td>
             </tr>
@@ -43,20 +68,32 @@
                 </td>
                 <td>
                     <div id="div_ValorParcela" class="col-md-10">
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                     </div>
                 </td>
             </tr>
         </table>
+<<<<<<< HEAD
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" id="Confirmar" value="Iniciar pagamento" class="btn btn-default" />
+=======
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="Confirmar" value="Iniciar pagamento" class="btn btn-default"/>
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             </div>
         </div>
     </div>
 
 
+<<<<<<< HEAD
     @section Scripts{
         <script>
             $('#SelecionarNumeroParcelas').change(function () {
@@ -74,4 +111,24 @@
         </script>
     }
     @Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+=======
+@section Scripts{
+    <script>
+        $('#SelecionarNumeroParcelas').change(function () {
+
+        var dropDownParcelas = $('#SelecionarNumeroParcelas');
+        var div = $('#div_ValorParcela');
+        div.html("");
+        if (dropDownParcelas.val() != "") {
+            var valorPagamento = @Html.Raw(ViewBag.Conta.ValorConta.ToString().Replace(",", "."));
+            var numParcelas = dropDownParcelas.val();
+            var parcela = (valorPagamento/numParcelas).toFixed(2);
+            var exibir = "R$ " + parcela.toString().replace(".",",");
+            div.html(exibir).show();
+        }
+    });
+    </script>
+}
+@Html.ActionLink(" ", "Index", new { @controller = "Relatorios" }, new { @class = "btn btn-default glyphicon glyphicon-home btn-lg" })
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
 }

@@ -53,7 +53,11 @@ namespace SistemaContas.Web.Controllers
                 cliente = repository.PegarClientePorId(id);
                 AutorizarLogin(cliente.Id, cliente.Permissao);
                 Session.Add("UsuarioLogado", cliente);
+<<<<<<< HEAD
                 return Json(true, JsonRequestBehavior.AllowGet);
+=======
+                return Json(true,JsonRequestBehavior.AllowGet);
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             }
             else
             {
@@ -110,10 +114,14 @@ namespace SistemaContas.Web.Controllers
         [AllowAnonymous]
         public ActionResult Validar(string usuario)
         {
+<<<<<<< HEAD
             Cliente cliente = new Cliente();
             var js = new JavaScriptSerializer();
             cliente = js.Deserialize<Cliente>(usuario);
             return Json(repository.VerificarCadastro(cliente), JsonRequestBehavior.AllowGet);
+=======
+            return Json(repository.VerificarCadastro(usuario), JsonRequestBehavior.AllowGet);
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
         }
 
 

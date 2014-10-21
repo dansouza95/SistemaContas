@@ -19,7 +19,10 @@
 @using (Html.BeginForm("RegistroUsuario", "Acesso", FormMethod.Post, new { id = "frm_registro" }))
 {
     <div class="form-group">
+<<<<<<< HEAD
         <div id="divErro"></div>
+=======
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
         <table>
             <tr>
                 <td>
@@ -60,7 +63,10 @@
                 </td>
             </tr>
         </table>
+<<<<<<< HEAD
         
+=======
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
     </div>
 }
 
@@ -70,6 +76,7 @@
             $('.tool').tooltip();
         });
         $('#btn_confirmar').click(function () {
+<<<<<<< HEAD
 
             if (ValidaCampos()) {
                 var user = $('#txtUsuario').val();
@@ -78,22 +85,35 @@
                     Usuario: user,
                     Email: email
                 };
+=======
+            if (ValidaCampos()) {
+                var user = $('#txtUsuario').val();
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                 $.ajax({
                     url: '@Html.Raw(Url.Action("Validar","Acesso"))',
                     dataType: 'json',
                     type: 'get',
+<<<<<<< HEAD
                     data: { usuario: JSON.stringify(cliente) },
                 })
                 .success(function (data) {
                     if (data) {
                         var aviso = "Email ou usuário já utilizados!";
                         $('#divErro').html(gerarAlert("danger",aviso));
+=======
+                    data: { usuario: user },
+                })
+                .success(function (data) {
+                    if (data == true) {
+                        alert('Nome de usuário já utilizado!');
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                     }
                     else {
                         $('#frm_registro').submit();
                     }
                 })
                 .error(function () {
+<<<<<<< HEAD
                     var aviso = "Falha na conexão!";
                     $('#divErro').html(gerarAlert("warning",aviso));
                 });
@@ -110,6 +130,16 @@
         }
 
 
+=======
+                    alert('Falha ao validar dados!');
+                });
+            }
+            else {
+                alert('Preencha os campos corretamente!');
+            }
+        });
+
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
         function ValidaCampos() {
             if ($('#txtNome').val().replace(" ", "") == "" ||
                $('#txtEmail').val().replace(" ", "") == "" ||

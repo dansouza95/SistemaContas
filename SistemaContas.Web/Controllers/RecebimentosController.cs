@@ -38,7 +38,11 @@ namespace SistemaContas.Web.Controllers
             else
             {
                 List<string> lista = new List<string>();
+<<<<<<< HEAD
                 for (int i = 1; i < 13; i++)
+=======
+                for (int i = 1; i < 11; i++)
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                 {
                     lista.Add(i.ToString());
                 }
@@ -65,7 +69,11 @@ namespace SistemaContas.Web.Controllers
                 Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
                 recebimento.Cliente = Session["UsuarioLogado"] as Cliente;
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             recebimento.Valor = recebimento.Conta.ValorConta;
             recebimento.ValorParcela = recebimento.Valor / recebimento.NumeroParcelas;
             recebimento.ParcelasRestantes = recebimento.NumeroParcelas;
@@ -114,7 +122,11 @@ namespace SistemaContas.Web.Controllers
                     Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
                     recebimento.Cliente = (Cliente)Session["UsuarioLogado"];
                 }
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                 recebimento.ValorRestante = recebimento.ValorRestante - recebimento.ValorParcela;
                 recebimento.ParcelasRestantes -= 1;
                 recebimento.Status = "Em andamento";
