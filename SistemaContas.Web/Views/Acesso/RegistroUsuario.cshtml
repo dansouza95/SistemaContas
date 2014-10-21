@@ -19,7 +19,7 @@
 @using (Html.BeginForm("RegistroUsuario", "Acesso", FormMethod.Post, new { id = "frm_registro" }))
 {
     <div class="form-group">
-        <div id="divErro"></div>
+        <div id="divAlerts"></div>
         <table>
             <tr>
                 <td>
@@ -85,8 +85,9 @@
                 })
                 .success(function (data) {
                     if (data) {
+                        $('#frm_registro').trigger('reset');
                         var aviso = "Email ou usuário já utilizados!";
-                        $('#divErro').html(gerarAlert("danger", aviso));
+                        $('#divAlerts').html(gerarAlert("danger", aviso));
                     }
 
                     else {
@@ -95,17 +96,18 @@
                 })
                 .error(function () {
                     var aviso = "Falha na conexão!";
-                    $('#divErro').html(gerarAlert("warning", aviso));
+                    $('#divAlerts').html(gerarAlert("warning", aviso));
                 });
             }
             else {
+                $('#frm_registro').trigger('reset');
                 var aviso = "Preencha os campos corretamente!";
-                $('#divErro').html(gerarAlert("danger", aviso));
+                $('#divAlerts').html(gerarAlert("danger", aviso));
             }
         });
 
         function gerarAlert(classe,mensagem) {
-            var msg = "<div class=\"alert alert-" + classe + " col-md-10 alert-dismissible\" role=\"alert\" style=\"display:normal\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button><strong>Aviso: </strong> " + mensagem + "</div>";
+            var msg = "<div class=\"alert alert-" + classe + " col-md-10 alert-dismissible\" role=\"alert\" style=\"display:normal\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>" + mensagem + "</div>";
             return msg;
         }
 

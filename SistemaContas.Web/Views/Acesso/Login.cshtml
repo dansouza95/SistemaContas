@@ -46,6 +46,7 @@
                             $('#frm_login').submit();
                         }
                         else {
+                            $('#frm_login').trigger('reset');
                             var aviso = "Usuário ou senha inválidos!";
                             $('#divErro').html(geraAlert("danger", aviso));
                             
@@ -58,6 +59,7 @@
                     ;
                 }
                 else {
+                    $('#frm_login').trigger('reset');
                     var aviso = "Preencha os campos corretamente!";
                     $('#divErro').html(geraAlert("danger", aviso));
                 }
