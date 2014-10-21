@@ -12,9 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <table class="table-bordered table-striped table-responsive">
-            <tr>
-                <td>
+        
                     @using (Html.BeginForm("Index", "Relatorios", FormMethod.Post, new { @class = "form-signin", @id = "frm_login" }))
                     {
                         <h2 class="form-signin-heading">Por favor, autentique-se.</h2>
@@ -24,9 +22,7 @@
                         @Html.ActionLink("Não possuo cadastro", "RegistroUsuario",new { @controller = "Acesso" }, new { @id = "link_registrarUsuario" })
                         <div id="divErro"></div>
                     }
-                </td>
-            </tr>
-        </table>
+                
     </div>
     @section Scripts{
         <script>
