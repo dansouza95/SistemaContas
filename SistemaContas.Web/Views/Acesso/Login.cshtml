@@ -12,32 +12,25 @@
 </head>
 <body>
     <div class="container">
-<<<<<<< HEAD
-        
-=======
         <table class="table-bordered table-striped table-responsive">
             <tr>
                 <td>
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                     @using (Html.BeginForm("Index", "Relatorios", FormMethod.Post, new { @class = "form-signin", @id = "frm_login" }))
                     {
                         <h2 class="form-signin-heading">Por favor, autentique-se.</h2>
                         @Html.TextBoxFor(x => x.Usuario, new { @class = "col-md-10 form-control", @id = "Usuario", @placeholder = "Digite o nome de usuário", @required = "true", @autofocus = "true", @maxlength = "30", @pattern = ".{8,30}", @title = "O usuário precisa conter ao menos 8 letras ou números." })
                         @Html.PasswordFor(x => x.Senha, new { @class = "col-md-10 form-control", @id = "Senha", @placeholder = "Digite a Senha", @required = "true", @autofocus = "true", @maxlength = "20", @pattern = ".{8,20}", @title = "A senha precisa conter ao menos 8 dígitos." })
-<<<<<<< HEAD
                            <button class="btn btn-lg btn-primary btn-block" type="button" id="Entrar" name="Entrar" value="Login">Login</button>
                         @Html.ActionLink("Não possuo cadastro", "RegistroUsuario",new { @controller = "Acesso" }, new { @id = "link_registrarUsuario" })
                         <div id="divErro"></div>
                     }
                 
-=======
     <button class="btn btn-lg btn-primary btn-block" type="button" id="Entrar" name="Entrar" value="Login">Login</button>
                         @Html.ActionLink("Não possuo cadastro", "RegistroUsuario",new { @controller = "Acesso" }, new { @id = "link_registrarUsuario" })
                     }
                 </td>
             </tr>
         </table>
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
     </div>
     @section Scripts{
         <script>
@@ -61,28 +54,18 @@
                             $('#frm_login').submit();
                         }
                         else {
-<<<<<<< HEAD
                             var aviso = "Usuário ou senha inválidos!";
                             $('#divErro').html(geraAlert("danger", aviso));
-=======
-                            
-                            alert('Usuário ou senha inválidos!');
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                             
                         }
                     })
                     .error(function () {
-<<<<<<< HEAD
                         var aviso = "Falha na conexão!";
                         $('#divErro').html(geraAlert("warning", aviso));
-=======
-                        alert('Falha ao conectar ao servidor!');
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
                     })
                     ;
                 }
                 else {
-<<<<<<< HEAD
                     var aviso = "Preencha os campos corretamente!";
                     $('#divErro').html(geraAlert("danger", aviso));
                 }
@@ -93,11 +76,6 @@
                             "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button><strong>Aviso: </strong>" + mensagem + "</div>";
                 return msg;
             }
-=======
-                    alert('Preencha os campos corretamente!');
-                }
-            });
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             function validarCampos() {
                 if (user.val().replace(" ", "") == "" || pass.val().replace(" ", "") == "")
                     return false;

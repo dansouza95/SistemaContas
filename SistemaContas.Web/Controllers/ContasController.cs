@@ -29,20 +29,13 @@ namespace SistemaContas.Web.Controllers
 
 
 
-<<<<<<< HEAD
-        [Authorize(Roles = "Usuario, Administrador")]
-=======
+
         [Authorize(Roles="Usuario, Administrador")]
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
         public ActionResult CadastrarConta()
         {
             return View();
         }
-<<<<<<< HEAD
-        [Authorize(Roles = "Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
-=======
         [Authorize(Roles="Usuario, Administrador"), AcceptVerbs(HttpVerbs.Post)]
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
         public ActionResult CadastrarConta(Conta conta)
         {
             if (Session["UsuarioLogado"] != null)
@@ -59,22 +52,13 @@ namespace SistemaContas.Web.Controllers
             repositoryConta.CadastraConta(conta);
             return RedirectToAction("SemTratativa", "Pendencias");
         }
-
-<<<<<<< HEAD
-        [Authorize(Roles = "Usuario, Administrador")]
-        public ActionResult EditarConta(int id = 0)
-        {
-            if (id == 0)
-            {
-                return RedirectToAction("Index", "Relatorios");
-=======
+        
         [Authorize(Roles="Usuario, Administrador")]
         public ActionResult EditarConta(int id=0)
         {
             if (id == 0)
             {
                 return RedirectToAction("Index","Relatorios");
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             }
             else
             {
@@ -97,11 +81,7 @@ namespace SistemaContas.Web.Controllers
                 Session.Add("UsuarioLogado", repositoryCliente.PegarClientePorId(Convert.ToInt32(User.Identity.Name)));
                 conta.Cliente = (Cliente)Session["UsuarioLogado"];
             }
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             conta.StatusConta = "Em aberto";
             conta.UltimaAtualizacao = DateTime.Now;
             repositoryConta.EditarConta(conta);
@@ -137,11 +117,6 @@ namespace SistemaContas.Web.Controllers
             var movimentacao = repositoryMovimentacao.PegarMovimentacao(conta.Id);
             if (listaTransacoes.Count > 0) { repositoryTransacao.ExcluirTransacoes(listaTransacoes); }
             if (movimentacao != null) { repositoryMovimentacao.ExcluirMovimentacao(movimentacao); }
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             repositoryConta.DeletarConta(conta);
             return RedirectToAction("Index", "Relatorios");
         }

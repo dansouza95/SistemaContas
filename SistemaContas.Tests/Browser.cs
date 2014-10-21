@@ -7,10 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
 using System.Threading;
-=======
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
 using System.Threading.Tasks;
 
 namespace SistemaContas.Initializer
@@ -48,19 +45,13 @@ namespace SistemaContas.Initializer
 
         public static void ClicoNoLink(string link)
         {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
+
             driver.FindElement(By.Id(link)).Click();
         }
 
         internal static void ClicoNoBotao(string botao)
         {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
+
             driver.FindElement(By.Id(botao)).Click();
         }
 
@@ -72,10 +63,6 @@ namespace SistemaContas.Initializer
 
         internal static void PaginaInicial(string elemento)
         {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 5e4e4453edd660e948bbb5fdac76b6e0fb56c9f2
             Assert.IsTrue(driver.FindElement(By.TagName(elemento)).TagName.ToLower().Contains(elemento));
         }
 
