@@ -70,5 +70,10 @@ namespace SistemaContas.Initializer
         {
             driver.FindElement(By.Id(campo)).SendKeys(valor);
         }
+
+        internal static void DevoVerAMensagem(string mensagem, string elemento)
+        {
+            Assert.IsTrue(driver.FindElement(By.Id(elemento)).Text.Equals(mensagem));
+        }
     }
 }

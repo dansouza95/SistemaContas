@@ -23,7 +23,8 @@ namespace SistemaContas.Initializer
             Process[] processo = Process.GetProcessesByName("iisexpress.exe");
             if (processo.Length > 0)
             {
-                processo[0].Kill();
+                for (int i = 0; i < processo.Length;i++)
+                    processo[i].Kill();
             }
             else if (_iisProcess != null && _iisProcess.HasExited == false)
             {
@@ -48,6 +49,7 @@ namespace SistemaContas.Initializer
             _iisProcess.StartInfo.FileName = programFiles + @"\IIS Express\iisexpress.exe";
             _iisProcess.StartInfo.Arguments = string.Format("/path:\"{0}\" /port:{1}", applicationPath, iisPort);
             _iisProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            _iisProcess.StartInfo.UseShellExecute = false;
             _iisProcess.Start();
         }
 

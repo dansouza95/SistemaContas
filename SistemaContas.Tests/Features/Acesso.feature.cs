@@ -90,6 +90,52 @@ testRunner.Then("devo ver o elemento \"input\"", ((string)(null)), ((TechTalk.Sp
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Errar o login")]
+        public virtual void ErrarOLogin()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Errar o login", ((string[])(null)));
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+testRunner.Given("que estou na página \"http://localhost:10941/Acesso/Login\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+#line 15
+testRunner.Then("preencho o campo \"Usuario\" com o valor \"dansouza.95\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 16
+testRunner.And("preencho o campo \"Senha\" com o valor \"senhaErrada\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 17
+testRunner.When("clico na opcao \"Entrar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 18
+testRunner.Then("devo ver a mensagem \"Usuário ou senha inválidos!\" no elemento \"mensagem\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Tentar cadastrar um cliente existente")]
+        public virtual void TentarCadastrarUmClienteExistente()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tentar cadastrar um cliente existente", ((string[])(null)));
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+testRunner.Given("que estou na página \"http://localhost:10941/Acesso/RegistroUsuario\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+#line 22
+testRunner.Then("preencho o campo \"txtNome\" com o valor \"Daniel\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line 23
+testRunner.And("preencho o campo \"txtEmail\" com o valor \"dansouza-95@uninove.edu.br\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 24
+testRunner.And("preencho o campo \"txtUsuario\" com o valor \"dansouza.95\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 25
+testRunner.And("preencho o campo \"txtSenha\" com o valor \"01020300\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line 26
+testRunner.When("clico na opcao \"btn_confirmar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 27
+testRunner.Then("devo ver a mensagem \"Email ou usuário já utilizados!\" no elemento \"mensagem\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

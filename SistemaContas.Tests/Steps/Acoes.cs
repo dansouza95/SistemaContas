@@ -28,7 +28,7 @@ namespace SistemaContas.Teste.Steps
             Browser.ClicoNoLink(link);
 
         }
-
+        
         [Given(@"clico na opcao ""(.*)""")]
         [Then(@"clico na opcao ""(.*)""")]
         [When(@"clico na opcao ""(.*)""")]
@@ -37,7 +37,7 @@ namespace SistemaContas.Teste.Steps
             Browser.ClicoNoBotao(botao);
         }
 
-
+        
         [Then(@"preencho o campo ""(.*)"" com o valor ""(.*)""")]
         [Given(@"preencho o campo ""(.*)"" com o valor ""(.*)""")]
         public void EntaoPreenchoOCampoComOValor(string campo, string valor)
@@ -56,6 +56,14 @@ namespace SistemaContas.Teste.Steps
         public void EntaoDevoVerAPaginaInicial(string elemento)
         {
             Browser.PaginaInicial(elemento);
+        }
+
+        [Given(@"devo ver a mensagem ""(.*)"" no elemento ""(.*)""")]
+        [When(@"devo ver a mensagem ""(.*)"" no elemento ""(.*)""")]
+        [Then(@"devo ver a mensagem ""(.*)"" no elemento ""(.*)""")]
+        public void EntaoDevoVerAMensagem(string mensagem, string elemento)
+        {
+            Browser.DevoVerAMensagem(mensagem, elemento);
         }
     }
 }

@@ -68,7 +68,7 @@
             function geraAlert(classe, mensagem)
             {
                 var msg = "<div class=\"alert alert-" + classe + " alert-dismissible fade in\" role=\"alert\" style=\"display:normal\">" +
-                            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button><strong>" + mensagem + "</strong></div>";
+                            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button><label id=\"mensagem\">" + mensagem + "</label></div>";
                 return msg;
             }
             function validarCampos() {
