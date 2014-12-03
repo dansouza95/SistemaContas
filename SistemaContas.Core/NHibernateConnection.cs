@@ -15,12 +15,24 @@ namespace SistemaContas.Core
     {
         public static ISession OpenSession()
         {
-            ISessionFactory sessionFactory = Fluently.Configure()
+            try
+            {
+                ISessionFactory sessionFactory = Fluently.Configure()
+                    .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("ContasConnection"))
+                    .ShowSql().FormatSql()).Mappings(map => map.FluentMappings.AddFromAssemblyOf<Cliente>())
+                    .ExposeConfiguration(config => new SchemaExport(config).Create(false, false))
+                    .BuildSessionFactory();
+                return sessionFactory.OpenSession();
+            }
+            catch
+            {
+                ISessionFactory sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("ContasConnection"))
                 .ShowSql().FormatSql()).Mappings(map => map.FluentMappings.AddFromAssemblyOf<Cliente>())
-                .ExposeConfiguration(config => new SchemaExport(config).Create(false, false))
+                .ExposeConfiguration(config => new SchemaExport(config).Create(true, true))
                 .BuildSessionFactory();
-            return sessionFactory.OpenSession();
+                return sessionFactory.OpenSession();
+            }
         }
         
     }
